@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Persamaaan Linear - Erlangga Setiawan Tohpati</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="profile-photo-container">
+                <img src="gambar/3x4.jpeg" alt="Foto Erlangga 3x4">
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">Selamat Datang di Web Saya</a>
+            <a href="Sistem Persamaan Linear.html" class="nav-item active">Sistem Persamaaan Linear</a>
+            <a href="aljabar matriks.html" class="nav-item">Aljabar Matriks</a>
+            <a href="matriks inver.html" class="nav-item">Matriks Invers</a>
+            <a href="Determinan.html" class="nav-item">Determinan</a>
+            <a href="formula determinan.html" class="nav-item">Formula Determinan</a>
+        </nav>
+    </aside>
+
+    <main class="main-content" id="main-content">
+        <header>
+            <div class="menu-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        </header>
+
+        <div class="content-body">
+            <article class="bd-article">
+                <section id="sistem-persamaaan-linear">
+                    <h1>Sistem Persamaaan Linear</h1>
+                    <p>Persamaan linear adalah persamaan matematika yang menggambarkan hubungan linear antara variabel-variabelnya. Secara umum, persamaan linear dapat ditulis dalam bentuk:</p>
+                    <p>\[ y=mx+by=mx+b \]</p>
+                    <p>di mana \(y\) adalah variabel dependen, \(x\) adalah variabel independen, \(m\) adalah kemiringan (slope), dan \(b\) adalah perpotongan dengan sumbu \(y\) (y-intercept). Persamaan ini menggambarkan garis lurus pada bidang Cartesius. Dalam konteks yang lebih umum, persamaan linear dapat memiliki lebih dari satu variabel dan dapat diwakili dalam bentuk umum:</p>
+                    <p>\[ a_1x_1+a_2x_2+…+a_nx_n=b \]</p>
+                    <p>di mana \(a_1,a_2,…,a_n\) adalah koefisien, \(x_1,x_2,…,x_n\) adalah variabel-variabel, dan bb adalah konstanta. Persamaan linear ini bisa menggambarkan hubungan linear antara lebih dari satu variabel.</p>
+                    
+                    <section id="contoh-persamaan-linear">
+                        <h2>Contoh persamaan linear</h2>
+                        <pre><code>import numpy as np
+A=np.array([[8,9,1,19],[1,2,3,9],[2,1,1,5]])</code></pre>
+                        <pre><code>print(A)</code></pre>
+                        <div class="output">[[ 8  9  1 19]
+ [ 1  2  3  9]
+ [ 2  1  1  5]]</div>
+                        <p>Jadi, ketiga persamaan linier tiga variabel diatas adalah sebagai berikut</p>
+                        <p>\[ 8x_1 + 9x_2 + x_3 = 19 \]</p>
+                        <p>\[ x_1 + 2x_2 + 3x_3 = 9 \]</p>
+                        <p>\[ 2x_1 + x_2 + x_3 = 5 \]</p>
+                    </section>
+                </section>
+
+                <section id="eliminasi-gauss">
+                    <h1>Eliminasi Gauss</h1>
+                    <p>Eliminasi Gauss adalah metode yang digunakan dalam aljabar linier untuk menyelesaikan sistem persamaan linear. Tujuannya adalah untuk mentransformasi sistem persamaan linear menjadi bentuk yang lebih sederhana, yang memudahkan untuk menemukan solusi sistem tersebut.</p>
+                    <p>Langkah-langkah eliminasi Gauss adalah sebagai berikut:</p>
+                    <ol>
+                        <li><strong>Pemilihan Pivot</strong>: Pilih elemen non-nol pertama dari baris pertama, yang disebut sebagai elemen pivot. Ini biasanya elemen pertama yang bukan nol.</li>
+                        <li><strong>Operasi Baris</strong>: Gunakan elemen pivot untuk membuat nol semua elemen di bawahnya dalam kolom yang sama. Ini dilakukan dengan mengurangi kelipatan dari baris pivot dari baris-baris di bawahnya.</li>
+                        <li><strong>Iterasi</strong>: Langkah operasi baris di atas diulang untuk setiap baris, dimulai dari baris kedua, ketiga, dan seterusnya.</li>
+                    </ol>
+                    <p>Setelah langkah-langkah di atas dilakukan, sistem persamaan linear akan berada dalam bentuk segitiga atas (upper triangular form). Dalam bentuk ini, mudah untuk menemukan solusi sistem menggunakan metode substitusi atau metode balikan (backward substitution).</p>
+                    
+                    <section id="contoh-penerapan-eliminasi-gauss">
+                        <h2>contoh penerapan eliminasi Gauss</h2>
+                        <p>Untuk penerapan eliminasi Gauss, saya kita bisa mengambil contoh persamaan linier yang diatas</p>
+                        <p>\[ 8x_1 + 9x_2 + x_3 = 19 \]</p>
+                        <p>\[ x_1 + 2x_2 + 3x_3 = 9 \]</p>
+                        <p>\[ 2x_1 + x_2 + x_3 = 5 \]</p>
+                        <p>Pertama-tama kita menulis kode program untuk digunakan pada perhitungan persamaan linier dengan cara eliminasi Gauss</p>
+                        <pre><code>def RowSwap(A,k,l):
+    m = A.shape[0]
+    n = A.shape[1]
+    B = np.copy(A).astype('float64')
+    for j in range(n):
+        temp = B[k][j]
+        B[k][j] = B[l][j]
+        B[l][j] = temp
+    return B
+
+def RowScale(A,k,scale):
+    m = A.shape[0]
+    n = A.shape[1]
+    B = np.copy(A).astype('float64')
+    for j in range(n):
+        B[k][j] *= scale
+    return B
+
+def RowAdd(A,k,l,scale):
+    m = A.shape[0]
+    n = A.shape[1]
+    B = np.copy(A).astype('float64')
+    for j in range(n):
+        B[l][j] += B[k][j]*scale
+    return B</code></pre>
+                        
+                        <p>Tahap pertama, yaitu menukar posisi persamaan ke-1 dengan persamaan ke-2 dengan fungsi <strong>RowSwap</strong></p>
+                        <div class="output">[[ 1.  2.  3.  9.]
+ [ 8.  9.  1. 19.]
+ [ 2.  1.  1.  5.]]</div>
+                        
+                        <p>Tahap keempat (A4) menghasilkan:</p>
+                        <div class="output">[[  1.           2.           3.           9.        ]
+ [ -0.           1.           3.28571429   7.57142857]
+ [  0.          -3.          -5.         -13.        ]]</div>
+                        
+                        <p>Tahap keenam (A6):</p>
+                        <div class="output">[[ 1.          2.          3.          9.        ]
+ [-0.          1.          3.28571429  7.57142857]
+ [ 0.          0.          1.          2.        ]]</div>
+                        
+                        <p>Solusi akhir sistem 3 variabel: \( x_1 = 1, x_2 = 1, x_3 = 2 \)</p>
+
+                        <hr>
+                        <h2>Contoh Persamaan 4 Variabel</h2>
+                        <p>\[ 2x_1 + 3x_2 - x_3 + 4x_4 = 10 \]</p>
+                        <p>\[ x_1 −2x_2 + 4x_3 − 3x_4 = 5 \]</p>
+                        <p>\[ 3x_1 + x_2 + 2x_3 − 2x_4 = 7 \]</p>
+                        <p>\[ 4x_1 − x_2 − x_3 + 2x_4 = 8 \]</p>
+                        
+                        <p>Hasil akhir eliminasi (B8):</p>
+                        <div class="output">[[ 1.         -2.          4.         -3.          5.        ]
+ [ 0.          1.         -1.28571429  1.42857143  0.        ]
+ [ 0.          0.         -1.         -3.         -8.        ]
+ [ 0.          0.          0.         28.         52.        ]]</div>
+                        <p>Solusi akhir: \( x_1 = \frac{88}{49}, x_2 = \frac{23}{49}, x_3 = \frac{17}{7}, x_4 = \frac{13}{7} \)</p>
+                    </section>
+                </section>
+            </article>
+
+            <div class="next-container">
+                <div class="next-box">
+                    <span>Next</span>
+                    <a href="aljabar matriks.html">Aljabar Matriks <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <footer>
+                <p>By Erlangga Setiawan Tohpati - NIM 250411100140</p>
+                <p>© Copyright 2026.</p>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            sidebar.classList.toggle('closed');
+            mainContent.classList.toggle('full-width');
+        }
+    </script>
+</body>
+</html>
