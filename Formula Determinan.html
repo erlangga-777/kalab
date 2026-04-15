@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula Determinan - Erlangga Setiawan Tohpati</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="profile-photo-container">
+                <img src="gambar/3x4.jpeg" alt="Foto Erlangga 3x4">
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">Selamat Datang di Web Saya</a>
+            <a href="Sistem Persamaan Linear.html" class="nav-item">Sistem Persamaaan Linear</a>
+            <a href="aljabar matriks.html" class="nav-item">Aljabar Matriks</a>
+            <a href="matriks inver.html" class="nav-item">Matriks Invers</a>
+            <a href="Determinan.html" class="nav-item">Determinan</a>
+            <a href="formula determinan.html" class="nav-item active">Formula Determinan</a>
+        </nav>
+    </aside>
+
+    <main class="main-content" id="main-content">
+        <header>
+            <div class="menu-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        </header>
+
+        <div class="content-body">
+            <section id="formula-determinan">
+                <h1>Formula Determinan</h1>
+                
+                <h2 id="ekspansi-kofaktor">Ekspansi Kofaktor</h2>
+                <p>Ekspansi kofaktor adalah salah satu cara untuk mencari determinan suatu matriks dengan cara membagi matriks tersebut menjadi matriks minor, yaitu menghilangkan suatu baris dan kolom matriks utama yang mengacu pada suatu elemen tertentu dalam matriks.</p>
+
+                <h2 id="penggunaan-ekspansi-kofaktor">Penggunaan ekspansi kofaktor</h2>
+                <p>Untuk contoh penggunaan ekspansi kofaktor kita bisa menggunakan matriks 4x4 adalah sebagai berikut:</p>
+                <p>
+                    \[A = \begin{bmatrix}
+                    2 & -1 & 0 & 3 \\
+                    0 & 1 & 2 & -3 \\
+                    -1 & 0 & 3 & 1 \\
+                    4 & 2 & 0 & -1 
+                    \end{bmatrix}\]
+                </p>
+
+                <p>Diketahui matrik A seperti diatas. Langkah pertama yaang harus kita lakukan adalah menentukan matriks matriks minor dari matriks A diatas. Contohnya yang akan saya gunakan adalah matriks \(A_{11}, A_{21}, A_{31}, A_{41}\).</p>
+                
+                <p>
+                    \[A_{11} = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 3 & 1 \\ 2 & 0 & 1 \end{bmatrix}, \quad
+                    A_{21} = \begin{bmatrix} -1 & 0 & 3 \\ 0 & 3 & 1 \\ 2 & 0 & -1 \end{bmatrix}\]
+                </p>
+                <p>
+                    \[A_{31} = \begin{bmatrix} -1 & 0 & 3 \\ 1 & 2 & -3 \\ 2 & 0 & -1 \end{bmatrix}, \quad
+                    A_{41} = \begin{bmatrix} -1 & 0 & 3 \\ 1 & 2 & -3 \\ 0 & 3 & 1 \end{bmatrix}\]
+                </p>
+
+                <p>Setelah matriks minor seperti diatas, selanjutnya adalah mencari kofaktor dan determinan dari matriks minor diatas:</p>
+                
+                <p>\(det(A_{11}) = -11\)</p>
+                <p>\(det(A_{21}) = -15\)</p>
+                <p>\(det(A_{31}) = -10\)</p>
+                <p>\(det(A_{41}) = 16\)</p>
+
+                <p>Setelah menemukan determinan dari matriks minor diatas, selanjutnya adalah mencari kofaktornya:</p>
+                <p>
+                    \[C_{11} = (-1^{1+1} \cdot det (A_{11})) = 1 \cdot (-11) = -11\]
+                    \[C_{21} = (-1^{2+1} \cdot det(A_{21})) = -1 \cdot (-15) = 15\]
+                    \[C_{31} = (-1^{3+1} \cdot det(A_{31})) = 1 \cdot (-10) = -10\]
+                    \[C_{41} = (-1^{4+1} \cdot det(A_{41})) = -1 \cdot 16 = -16\]
+                </p>
+
+                <p>Setelah ketemu kofaktor maka bisa dicari nilai dari determinan matriks \(A\):</p>
+                <p>
+                    \[det(A) = (a_{11} \cdot c_{11}) + (a_{21} \cdot c_{21}) + (a_{31} \cdot c_{31}) + (a_{41} \cdot c_{41})\]
+                    \[= (2 \cdot (-11)) + (0 \cdot 15) + ((-1) \cdot (-10)) + (4 \cdot (-16)) = -76\]
+                </p>
+                <p>Jadi, determinan dari matriks \(A\) adalah <strong>\(-76\)</strong>.</p>
+            </section>
+
+            <div class="next-container">
+                <div class="next-box">
+                    <span>Next</span>
+                    <a href="index.html">To Be Continued <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <footer>
+                <p>By Erlangga Setiawan Tohpati - NIM 250411100140</p>
+                <p>© Copyright 2026.</p>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            sidebar.classList.toggle('closed');
+            mainContent.classList.toggle('full-width');
+        }
+    </script>
+</body>
+</html>
