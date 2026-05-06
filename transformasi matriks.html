@@ -1,244 +1,196 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" data-content_root="">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transformasi Geometri - Jupyter Book (Camus Edition)</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transformasi Geometri — My sample book</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-            margin: 0;
-            display: flex;
-            color: #333;
-            line-height: 1.6;
+        :root {
+            --pst-color-primary: #007bff;
+            --bd-sidebar-width: 250px;
         }
 
-        /* Sidebar Style */
-        .sidebar {
-            width: 250px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .bd-sidebar {
+            width: var(--bd-sidebar-width);
             height: 100vh;
             background-color: #f8f9fa;
             border-right: 1px solid #e1e4e8;
-            padding: 20px;
             position: fixed;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Mengetengahkan logo */
+            padding: 20px;
+            overflow-y: auto;
         }
 
-        /* --- BAGIAN BARU: Gaya Logo Camus Melingkar --- */
-        .logo-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .camus-logo {
-            width: 120px; /* Atur ukuran lingkaran */
-            height: 120px;
-            border-radius: 50%; /* Membuat gambar menjadi lingkaran */
-            object-fit: cover; /* Memastikan gambar terpotong rapi di dalam lingkaran */
-            border: 4px solid #f37726; /* Opsional: Tambahkan border warna Jupyter Book */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .sidebar-logo-text {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 10px;
-            color: #2c3e50;
-        }
+        .logo { font-size: 1.5rem; font-weight: bold; margin-bottom: 2rem; display: block; color: #333; text-decoration: none; }
+        .logo b { color: #f37726; }
         
-        .sidebar-logo-text span { color: #f37726; } /* Warna oranye untuk text */
-        /* ---------------------------------------------- */
+        .nav-link { color: #007bff; padding: 5px 0; display: block; text-decoration: none; font-size: 0.9rem; }
+        .nav-link.active { color: #212529; font-weight: 700; border-left: 3px solid #007bff; padding-left: 10px; margin-left: -13px; }
 
-        .nav-link {
-            color: #007bff;
-            text-decoration: none;
-            display: block;
-            margin: 10px 0;
-            font-size: 0.95em;
-            width: 100%;
-            text-align: left;
+        /* Main Content */
+        .bd-main {
+            margin-left: var(--bd-sidebar-width);
+            width: calc(100% - var(--bd-sidebar-width));
+            padding: 40px 60px;
         }
 
-        .nav-link.active {
-            color: #2c3e50;
-            font-weight: bold;
-            border-left: 3px solid #007bff;
-            padding-left: 10px;
-            margin-left: -13px;
-        }
-
-        /* Main Content Style */
-        .main-container {
-            margin-left: 280px;
-            padding: 40px;
-            max-width: 800px;
-            width: 100%;
-        }
-
-        .top-nav {
+        .header-article {
             display: flex;
             justify-content: flex-end;
             gap: 15px;
-            color: #666;
             margin-bottom: 30px;
+            color: #666;
         }
 
-        h1 { font-size: 2.5em; margin-bottom: 20px; }
-        h2 { font-size: 1.8em; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 40px; }
+        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; color: #2c3e50; }
 
-        .math-block {
-            background: #fdfdfd;
+        /* Jupyter Book style Admonition */
+        .admonition {
+            background-color: #f8f9fa;
+            border: 1px solid #e1e4e8;
+            border-left: 5px solid #007bff;
             padding: 15px;
-            border-radius: 5px;
-            font-family: "Times New Roman", serif;
-            font-size: 1.1em;
-            margin: 15px 0;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .admonition-title { font-weight: bold; margin-bottom: 10px; display: block; }
+        
+        .math-code {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            display: block;
+            margin: 10px 0;
+            border-radius: 4px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #dfe2e5;
-            padding: 12px;
-            text-align: left;
-        }
-
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #dfe2e5; padding: 12px; text-align: left; }
         th { background-color: #f6f8fa; }
 
-        .footer {
-            margin-top: 60px;
-            border-top: 1px solid #eee;
+        footer {
+            margin-top: 50px;
             padding-top: 20px;
-            font-size: 0.85em;
+            border-top: 1px solid #eee;
+            font-size: 0.85rem;
             color: #777;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="sidebar">
-        <div class="logo-container">
-            <img src="IMAGE.jpg">
-            <div class="sidebar-logo-text">jupyter <span>{camus}</span></div>
+    <aside class="bd-sidebar">
+        <a class="logo" href="#">jupyter <b>{book}</b></a>
+        <nav>
+            <a href="#" class="nav-link active">Welcome to your Jupyter Book</a>
+            <a href="#" class="nav-link">Markdown Files</a>
+            <a href="#" class="nav-link">Content with notebooks</a>
+            <a href="#" class="nav-link">Notebooks with MyST Markdown</a>
+        </nav>
+    </aside>
+
+    <main class="bd-main">
+        
+        <div class="header-article">
+            <i class="fab fa-github"></i>
+            <i class="fas fa-download"></i>
+            <i class="fas fa-expand"></i>
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-magnifying-glass"></i>
         </div>
-        <a href="#" class="nav-link active">Welcome to your Jupyter Book</a>
-        <a href="#" class="nav-link">Markdown Files</a>
-        <a href="#" class="nav-link">Content with notebooks</a>
-        <a href="#" class="nav-link">Notebooks with MyST Markdown</a>
-    </div>
 
-    <div class="main-container">
-        <div class="top-nav">
-            <span>🐙 GitHub</span>
-            <span>⬇️ Download</span>
-            <span>🔍 Search</span>
-        </div>
+        <article class="bd-article">
+            <h1>Transformasi Geometri: Analisis Titik</h1>
+            <p>Halaman ini berisi analisis perpindahan titik koordinat menggunakan matriks translasi berdasarkan pergerakan objek.</p>
 
-        <h1>Transformasi Geometri: Analisis Titik</h1>
-        <p>Halaman ini berisi analisis perpindahan titik koordinat menggunakan matriks translasi.</p>
-
-        <section>
-            <h2>1. Transformasi A ke B</h2>
-            <p><strong>Asal:</strong> (2, 3) | <strong>Tujuan:</strong> (2, 1)</p>
-            <div class="math-block">
-                x' = x + a → 2 = 2 + a → <b>a = 0</b><br>
-                y' = y + b → 1 = 3 + b → <b>b = -2</b>
+            <div class="admonition">
+                <span class="admonition-title">1. Transformasi A ke B</span>
+                <p>Asal: <b>(2, 3)</b> | Tujuan: <b>(2, 1)</b></p>
+                <div class="math-code">
+                    x' = x + a → 2 = 2 + a → <b>a = 0</b><br>
+                    y' = y + b → 1 = 3 + b → <b>b = -2</b>
+                </div>
+                <p>Matriks Translasi: <b>T = [0, -2]<sup>T</sup></b></p>
             </div>
-            <p>Matriks Translasi: T = [0, -2]<sup>T</sup></p>
-        </section>
 
-        <section>
-            <h2>2. Transformasi B ke C</h2>
-            <p><strong>Asal:</strong> (2, 1) | <strong>Tujuan:</strong> (4, 1)</p>
-            <div class="math-block">
-                x' = x + a → 4 = 2 + a → <b>a = 2</b><br>
-                y' = y + b → 1 = 1 + b → <b>b = 0</b>
+            <div class="admonition">
+                <span class="admonition-title">2. Transformasi B ke C</span>
+                <p>Asal: <b>(2, 1)</b> | Tujuan: <b>(4, 1)</b></p>
+                <div class="math-code">
+                    x' = x + a → 4 = 2 + a → <b>a = 2</b><br>
+                    y' = y + b → 1 = 1 + b → <b>b = 0</b>
+                </div>
+                <p>Matriks Translasi: <b>T = [2, 0]<sup>T</sup></b></p>
             </div>
-            <p>Matriks Translasi: T = [2, 0]<sup>T</sup></p>
-        </section>
 
-        <section>
-            <h2>3. Transformasi D ke E</h2>
-            <p><strong>Asal:</strong> (2, 4) | <strong>Tujuan:</strong> (2, 0)</p>
-            <div class="math-block">
-                x' = x + a → 2 = 2 + a → <b>a = 0</b><br>
-                y' = y + b → 0 = 4 + b → <b>b = -4</b>
+            <div class="admonition">
+                <span class="admonition-title">3. Transformasi D ke E</span>
+                <p>Asal: <b>(2, 4)</b> | Tujuan: <b>(2, 0)</b></p>
+                <div class="math-code">
+                    x' = x + a → 2 = 2 + a → <b>a = 0</b><br>
+                    y' = y + b → 0 = 4 + b → <b>b = -4</b>
+                </div>
+                <p>Matriks Translasi: <b>T = [0, -4]<sup>T</sup></b></p>
             </div>
-            <p>Matriks Translasi: T = [0, -4]<sup>T</sup></p>
-        </section>
 
-        <section>
-            <h2>4. Transformasi E ke F</h2>
-            <p><strong>Asal:</strong> (2, 0) | <strong>Tujuan:</strong> (4, 0)</p>
-            <div class="math-block">
-                x' = x + a → 4 = 2 + a → <b>a = 2</b><br>
-                y' = y + b → 0 = 0 + b → <b>b = 0</b>
+            <div class="admonition">
+                <span class="admonition-title">4. Transformasi E ke F</span>
+                <p>Asal: <b>(2, 0)</b> | Tujuan: <b>(4, 0)</b></p>
+                <div class="math-code">
+                    x' = x + a → 4 = 2 + a → <b>a = 2</b><br>
+                    y' = y + b → 0 = 0 + b → <b>b = 0</b>
+                </div>
+                <p>Matriks Translasi: <b>T = [2, 0]<sup>T</sup></b></p>
             </div>
-            <p>Matriks Translasi: T = [2, 0]<sup>T</sup></p>
-        </section>
 
-        <h2>Ringkasan Matriks</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Pergerakan</th>
-                    <th>Jenis Transformasi</th>
-                    <th>Matriks (T)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>A → B</td>
-                    <td>Vertikal (Bawah 2)</td>
-                    <td>[0, -2]<sup>T</sup></td>
-                </tr>
-                <tr>
-                    <td>B → C</td>
-                    <td>Horizontal (Kanan 2)</td>
-                    <td>[2, 0]<sup>T</sup></td>
-                </tr>
-                <tr>
-                    <td>D → E</td>
-                    <td>Vertikal (Bawah 4)</td>
-                    <td>[0, -4]<sup>T</sup></td>
-                </tr>
-                <tr>
-                    <td>E → F</td>
-                    <td>Horizontal (Kanan 2)</td>
-                    <td>[2, 0]<sup>T</sup></td>
-                </tr>
-            </tbody>
-        </table>
+            <h2>Ringkasan Matriks</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pergerakan</th>
+                        <th>Jenis Transformasi</th>
+                        <th>Matriks (T)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A → B</td><td>Vertikal (Bawah 2)</td><td>[0, -2]<sup>T</sup></td></tr>
+                    <tr><td>B → C</td><td>Horizontal (Kanan 2)</td><td>[2, 0]<sup>T</sup></td></tr>
+                    <tr><td>D → E</td><td>Vertikal (Bawah 4)</td><td>[0, -4]<sup>T</sup></td></tr>
+                    <tr><td>E → F</td><td>Horizontal (Kanan 2)</td><td>[2, 0]<sup>T</sup></td></tr>
+                </tbody>
+            </table>
 
-        <section>
+            <hr>
+
             <h2>Visualisasi Grafik GeoGebra</h2>
-            <div style="width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+            <p>Klik dan geser pada grafik untuk melihat koordinat lebih detail.</p>
+            <div style="width: 100%; max-width: 800px; margin: auto;">
                 <iframe src="https://www.geogebra.org/calculator/fag6jxbs?embed" 
-                        width="100%" 
-                        height="500px" 
-                        style="border: 1px solid #e1e4e8; border-radius: 8px; max-width: 800px;" 
+                        width="100%" height="500px" 
+                        style="border: 1px solid #e1e4e8; border-radius: 8px;" 
                         allowfullscreen>
                 </iframe>
-                <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
-                    <i>Klik dan geser pada grafik untuk melihat koordinat lebih detail.</i>
-                </p>
             </div>
-        </section>
+        </article>
 
-        <div class="footer">
-            By The Jupyter Book Community<br>
-            &copy; Copyright 2022.
-        </div>
-    </div>
+        <footer>
+            <p>By The Jupyter Book Community<br>© Copyright 2022.</p>
+        </footer>
+    </main>
 
 </body>
 </html>
