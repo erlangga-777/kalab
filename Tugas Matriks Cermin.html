@@ -5,109 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transformasi Geometri - Matriks Translasi</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; background-color: #f4f4f4; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1, h2 { color: #333; border-bottom: 2px solid #333; padding-bottom: 5px; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 12px; text-align: left; }
-        th { background-color: #f8f8f8; }
-        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 14px; }
-        .math { font-family: "Courier New", Courier, monospace; background: #eee; padding: 2px 5px; border-radius: 3px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; background-color: #eef2f7; color: #333; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        h1, h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        
+        /* Styling Perhitungan */
+        .calc-section { background: #f9f9f9; padding: 15px; border-left: 5px solid #3498db; margin-bottom: 20px; border-radius: 4px; }
+        .math { font-family: 'Consolas', monospace; color: #d63384; font-weight: bold; }
+        
+        /* Styling Tabel */
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; }
+        th, td { border: 1px solid #dee2e6; padding: 12px; text-align: center; }
+        th { background-color: #3498db; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+
+        /* Styling Kode */
+        .code-header { background: #272822; color: #a6e22e; padding: 10px 15px; border-radius: 8px 8px 0 0; font-size: 13px; margin-top: 20px; display: flex; justify-content: space-between; }
+        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 0 0 8px 8px; overflow-x: auto; font-size: 14px; margin-top: 0; }
+
+        /* Simulasi Output Colab (Dapat Diputar) */
+        .output-container { margin-top: 30px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; background: #fff; }
+        .output-header { background: #f0f0f0; padding: 10px; border-bottom: 1px solid #ccc; font-weight: bold; font-size: 14px; color: #666; }
+        .animation-box { width: 100%; height: 500px; display: flex; align-items: center; justify-content: center; background: #fafafa; position: relative; }
+        .video-placeholder { width: 90%; height: 90%; border: 1px solid #ddd; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        /* Kontrol Playback Sederhana */
+        .controls { background: #f0f0f0; padding: 10px; display: flex; gap: 10px; align-items: center; }
+        .btn { padding: 5px 15px; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px; }
+        .btn:hover { background: #2980b9; }
+        .progress-bar { flex-grow: 1; height: 10px; background: #ddd; border-radius: 5px; position: relative; }
+        .progress-fill { width: 45%; height: 100%; background: #3498db; border-radius: 5px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Transformasi Geometri</h1>
-    <p>Halaman ini berisi analisis perpindahan titik koordinat menggunakan matriks translasi berdasarkan pergerakan objek.</p>
+    <p>Analisis perpindahan titik koordinat menggunakan matriks translasi berdasarkan pergerakan objek.</p>
 
-    <h2>1. Analisis Perhitungan Matriks</h2>
-    
-    <p><strong>Transformasi A ke B</strong> (Vertikal - Bawah 2)<br>
-    Asal: (2, 3) | Tujuan: (2, 1)<br>
-    <span class="math">x' = x + a &rarr; 2 = 2 + a &rarr; a = 0</span><br>
-    <span class="math">y' = y + b &rarr; 1 = 3 + b &rarr; b = -2</span><br>
-    Matriks Translasi: T = [0, -2]<sup>T</sup></p>
-
-    <p><strong>Transformasi B ke C</strong> (Horizontal - Kanan 2)<br>
-    Asal: (2, 1) | Tujuan: (4, 1)<br>
-    <span class="math">x' = x + a &rarr; 4 = 2 + a &rarr; a = 2</span><br>
-    <span class="math">y' = y + b &rarr; 1 = 1 + b &rarr; b = 0</span><br>
-    Matriks Translasi: T = [2, 0]<sup>T</sup></p>
-
-    <p><strong>Transformasi D ke E</strong> (Vertikal - Bawah 4)<br>
-    Asal: (2, 4) | Tujuan: (2, 0)<br>
-    <span class="math">x' = x + a &rarr; 2 = 2 + a &rarr; a = 0</span><br>
-    <span class="math">y' = y + b &rarr; 0 = 4 + b &rarr; b = -4</span><br>
-    Matriks Translasi: T = [0, -4]<sup>T</sup></p>
-
-    <p><strong>Transformasi E ke F</strong> (Horizontal - Kanan 2)<br>
-    Asal: (2, 0) | Tujuan: (4, 0)<br>
-    <span class="math">x' = x + a &rarr; 4 = 2 + a &rarr; a = 2</span><br>
-    <span class="math">y' = y + b &rarr; 0 = 0 + b &rarr; b = 0</span><br>
-    Matriks Translasi: T = [2, 0]<sup>T</sup></p>
+    <div class="calc-section">
+        <h2>1. Analisis Transformasi</h2>
+        <p><strong>A &rarr; B (Vertikal):</strong> Asal (2, 3) | Tujuan (2, 1) | <span class="math">T = [0, -2]ᵀ</span></p>
+        <p><strong>B &rarr; C (Horizontal):</strong> Asal (2, 1) | Tujuan (4, 1) | <span class="math">T = [2, 0]ᵀ</span></p>
+        <p><strong>D &rarr; E (Vertikal):</strong> Asal (2, 4) | Tujuan (2, 0) | <span class="math">T = [0, -4]ᵀ</span></p>
+        <p><strong>E &rarr; F (Horizontal):</strong> Asal (2, 0) | Tujuan (4, 0) | <span class="math">T = [2, 0]ᵀ</span></p>
+    </div>
 
     <h2>2. Ringkasan Matriks</h2>
     <table>
         <thead>
             <tr>
                 <th>Pergerakan</th>
-                <th>Jenis Transformasi</th>
-                <th>Matriks (T)</th>
+                <th>Jenis</th>
+                <th>Matriks Translasi (T)</th>
             </tr>
         </thead>
         <tbody>
-            <tr><td>A &rarr; B</td><td>Vertikal (Bawah 2)</td><td>[0, -2]<sup>T</sup></td></tr>
-            <tr><td>B &rarr; C</td><td>Horizontal (Kanan 2)</td><td>[2, 0]<sup>T</sup></td></tr>
-            <tr><td>D &rarr; E</td><td>Vertikal (Bawah 4)</td><td>[0, -4]<sup>T</sup></td></tr>
-            <tr><td>E &rarr; F</td><td>Horizontal (Kanan 2)</td><td>[2, 0]<sup>T</sup></td></tr>
+            <tr><td>A &rarr; B</td><td>Vertikal Bawah</td><td>[0, -2]ᵀ</td></tr>
+            <tr><td>B &rarr; C</td><td>Horizontal Kanan</td><td>[2, 0]ᵀ</td></tr>
+            <tr><td>D &rarr; E</td><td>Vertikal Bawah</td><td>[0, -4]ᵀ</td></tr>
+            <tr><td>E &rarr; F</td><td>Horizontal Kanan</td><td>[2, 0]ᵀ</td></tr>
         </tbody>
     </table>
 
-    <h2>3. Kode Implementasi Python</h2>
+    <div class="code-header">
+        <span>Python Code (Matplotlib Animation)</span>
+        <span>main.py</span>
+    </div>
     <pre><code>import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
-from IPython.display import HTML
 
+# Inisialisasi koordinat
 x_coords = np.array([2, 3, 3, 2, 2])
 top_y_init = np.array([3, 3, 4, 4, 3])
 bottom_y_init = np.array([-4, -4, -3, -3, -4])
 
-fig, ax = plt.subplots(figsize=(10, 10))
-ax.set_xlim(-8, 8)
-ax.set_ylim(-8, 8)
-ax.set_aspect('equal')
-ax.set_xticks(np.arange(-8, 9, 1))
-ax.set_yticks(np.arange(-8, 9, 1))
-ax.grid(True, linestyle='-', alpha=0.3)
-ax.axhline(0, color='black', linewidth=3)
-ax.axvline(0, color='black', linewidth=1)
-
-line_top, = ax.plot([], [], color='blue', linestyle='--', linewidth=3, label='Matriks Atas')
-line_bottom, = ax.plot([], [], color='red', linestyle='--', linewidth=3, label='Matriks Bawah')
-
-texts_top = [ax.text(0, 0, '', color='blue', fontweight='bold', ha='center', va='bottom') for _ in range(4)]
-texts_bottom = [ax.text(0, 0, '', color='red', fontweight='bold', ha='center', va='top') for _ in range(4)]
-
-ax.legend(loc='upper right')
-
+# Fungsi animasi
 def animate(frame):
     curr_top_y = top_y_init - frame
     curr_bottom_y = bottom_y_init + frame
     line_top.set_data(x_coords, curr_top_y)
     line_bottom.set_data(x_coords, curr_bottom_y)
-    for i in range(4):
-        texts_top[i].set_position((x_coords[i], curr_top_y[i]))
-        texts_top[i].set_text(f'({x_coords[i]},{curr_top_y[i]})')
-        texts_bottom[i].set_position((x_coords[i], curr_bottom_y[i]))
-        texts_bottom[i].set_text(f'({x_coords[i]},{curr_bottom_y[i]})')
-    return [line_top, line_bottom] + texts_top + texts_bottom
+    return [line_top, line_bottom]
 
-ani = animation.FuncAnimation(fig, animate, frames=9, interval=800, blit=True)
-plt.close()
-HTML(ani.to_jshtml())</code></pre>
+ani = animation.FuncAnimation(fig, animate, frames=9, interval=800)</code></pre>
+
+    <h2>3. Hasil Visualisasi (Interactive Output)</h2>
+    <div class="output-container">
+        <div class="output-header">
+            Interactive Animation Output (Colab Simulation)
+        </div>
+        <div class="animation-box">
+            <div class="video-placeholder">
+                <svg width="300" height="300" viewBox="0 0 100 100">
+                    <line x1="0" y1="50" x2="100" y2="50" stroke="black" stroke-width="0.5"/>
+                    <line x1="50" y1="0" x2="50" y2="100" stroke="black" stroke-width="0.5"/>
+                    <rect x="55" y="30" width="10" height="10" fill="none" stroke="blue" stroke-width="1" stroke-dasharray="2">
+                        <animate attributeName="y" values="30;50;30" dur="4s" repeatCount="indefinite" />
+                    </rect>
+                    <rect x="55" y="70" width="10" height="10" fill="none" stroke="red" stroke-width="1" stroke-dasharray="2">
+                        <animate attributeName="y" values="70;50;70" dur="4s" repeatCount="indefinite" />
+                    </rect>
+                </svg>
+                <p style="font-size: 12px; color: #888;">Simulasi Pergerakan Titik Berdasarkan Matriks</p>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="btn">Play</button>
+            <button class="btn">Stop</button>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <span style="font-size: 12px;">00:04 / 00:08</span>
+        </div>
+    </div>
 </div>
 
 </body>
