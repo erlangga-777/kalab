@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformasi Geometri - Matriks Translasi</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; background-color: #f4f4f4; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #333; border-bottom: 2px solid #333; padding-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 12px; text-align: left; }
+        th { background-color: #f8f8f8; }
+        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 14px; }
+        .math { font-family: "Courier New", Courier, monospace; background: #eee; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Transformasi Geometri</h1>
+    <p>Halaman ini berisi analisis perpindahan titik koordinat menggunakan matriks translasi berdasarkan pergerakan objek.</p>
+
+    <h2>1. Analisis Perhitungan Matriks</h2>
+    
+    <p><strong>Transformasi A ke B</strong> (Vertikal - Bawah 2)<br>
+    Asal: (2, 3) | Tujuan: (2, 1)<br>
+    <span class="math">x' = x + a &rarr; 2 = 2 + a &rarr; a = 0</span><br>
+    <span class="math">y' = y + b &rarr; 1 = 3 + b &rarr; b = -2</span><br>
+    Matriks Translasi: T = [0, -2]<sup>T</sup></p>
+
+    <p><strong>Transformasi B ke C</strong> (Horizontal - Kanan 2)<br>
+    Asal: (2, 1) | Tujuan: (4, 1)<br>
+    <span class="math">x' = x + a &rarr; 4 = 2 + a &rarr; a = 2</span><br>
+    <span class="math">y' = y + b &rarr; 1 = 1 + b &rarr; b = 0</span><br>
+    Matriks Translasi: T = [2, 0]<sup>T</sup></p>
+
+    <p><strong>Transformasi D ke E</strong> (Vertikal - Bawah 4)<br>
+    Asal: (2, 4) | Tujuan: (2, 0)<br>
+    <span class="math">x' = x + a &rarr; 2 = 2 + a &rarr; a = 0</span><br>
+    <span class="math">y' = y + b &rarr; 0 = 4 + b &rarr; b = -4</span><br>
+    Matriks Translasi: T = [0, -4]<sup>T</sup></p>
+
+    <p><strong>Transformasi E ke F</strong> (Horizontal - Kanan 2)<br>
+    Asal: (2, 0) | Tujuan: (4, 0)<br>
+    <span class="math">x' = x + a &rarr; 4 = 2 + a &rarr; a = 2</span><br>
+    <span class="math">y' = y + b &rarr; 0 = 0 + b &rarr; b = 0</span><br>
+    Matriks Translasi: T = [2, 0]<sup>T</sup></p>
+
+    <h2>2. Ringkasan Matriks</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Pergerakan</th>
+                <th>Jenis Transformasi</th>
+                <th>Matriks (T)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>A &rarr; B</td><td>Vertikal (Bawah 2)</td><td>[0, -2]<sup>T</sup></td></tr>
+            <tr><td>B &rarr; C</td><td>Horizontal (Kanan 2)</td><td>[2, 0]<sup>T</sup></td></tr>
+            <tr><td>D &rarr; E</td><td>Vertikal (Bawah 4)</td><td>[0, -4]<sup>T</sup></td></tr>
+            <tr><td>E &rarr; F</td><td>Horizontal (Kanan 2)</td><td>[2, 0]<sup>T</sup></td></tr>
+        </tbody>
+    </table>
+
+    <h2>3. Kode Implementasi Python</h2>
+    <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import animation
+from IPython.display import HTML
+
+x_coords = np.array([2, 3, 3, 2, 2])
+top_y_init = np.array([3, 3, 4, 4, 3])
+bottom_y_init = np.array([-4, -4, -3, -3, -4])
+
+fig, ax = plt.subplots(figsize=(10, 10))
+ax.set_xlim(-8, 8)
+ax.set_ylim(-8, 8)
+ax.set_aspect('equal')
+ax.set_xticks(np.arange(-8, 9, 1))
+ax.set_yticks(np.arange(-8, 9, 1))
+ax.grid(True, linestyle='-', alpha=0.3)
+ax.axhline(0, color='black', linewidth=3)
+ax.axvline(0, color='black', linewidth=1)
+
+line_top, = ax.plot([], [], color='blue', linestyle='--', linewidth=3, label='Matriks Atas')
+line_bottom, = ax.plot([], [], color='red', linestyle='--', linewidth=3, label='Matriks Bawah')
+
+texts_top = [ax.text(0, 0, '', color='blue', fontweight='bold', ha='center', va='bottom') for _ in range(4)]
+texts_bottom = [ax.text(0, 0, '', color='red', fontweight='bold', ha='center', va='top') for _ in range(4)]
+
+ax.legend(loc='upper right')
+
+def animate(frame):
+    curr_top_y = top_y_init - frame
+    curr_bottom_y = bottom_y_init + frame
+    line_top.set_data(x_coords, curr_top_y)
+    line_bottom.set_data(x_coords, curr_bottom_y)
+    for i in range(4):
+        texts_top[i].set_position((x_coords[i], curr_top_y[i]))
+        texts_top[i].set_text(f'({x_coords[i]},{curr_top_y[i]})')
+        texts_bottom[i].set_position((x_coords[i], curr_bottom_y[i]))
+        texts_bottom[i].set_text(f'({x_coords[i]},{curr_bottom_y[i]})')
+    return [line_top, line_bottom] + texts_top + texts_bottom
+
+ani = animation.FuncAnimation(fig, animate, frames=9, interval=800, blit=True)
+plt.close()
+HTML(ani.to_jshtml())</code></pre>
+</div>
+
+</body>
+</html>
