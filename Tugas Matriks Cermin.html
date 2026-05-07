@@ -2,125 +2,103 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transformasi Geometri - Matriks Translasi</title>
+    <title>Output Transformasi Matriks</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; background-color: #eef2f7; color: #333; }
-        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        h1, h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        body { font-family: 'Consolas', monospace; background-color: #1e1e1e; color: #d4d4d4; padding: 20px; }
+        .code-container { background: #2d2d2d; border-radius: 8px; padding: 20px; margin-bottom: 30px; border: 1px solid #444; }
+        .output-label { color: #569cd6; font-weight: bold; margin-bottom: 10px; display: block; }
+        pre { margin: 0; color: #9cdcfe; font-size: 14px; overflow-x: auto; }
         
-        /* Styling Perhitungan */
-        .calc-section { background: #f9f9f9; padding: 15px; border-left: 5px solid #3498db; margin-bottom: 20px; border-radius: 4px; }
-        .math { font-family: 'Consolas', monospace; color: #d63384; font-weight: bold; }
+        /* Box Output Colab Style */
+        .output-box { background: white; border-radius: 8px; overflow: hidden; color: #333; }
+        .output-header { background: #f0f0f0; padding: 10px; border-bottom: 1px solid #ccc; font-size: 13px; color: #666; }
+        .canvas { background: #fff; height: 500px; position: relative; display: flex; justify-content: center; align-items: center; }
         
-        /* Styling Tabel */
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; }
-        th, td { border: 1px solid #dee2e6; padding: 12px; text-align: center; }
-        th { background-color: #3498db; color: white; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
+        /* Grid & Axes */
+        .grid { position: absolute; width: 100%; height: 100%; border: 0.5px solid #eee; }
+        .axis-x { position: absolute; width: 100%; height: 2px; background: #000; top: 50%; }
+        .axis-y { position: absolute; width: 2px; height: 100%; background: #000; left: 50%; }
 
-        /* Styling Kode */
-        .code-header { background: #272822; color: #a6e22e; padding: 10px 15px; border-radius: 8px 8px 0 0; font-size: 13px; margin-top: 20px; display: flex; justify-content: space-between; }
-        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 0 0 8px 8px; overflow-x: auto; font-size: 14px; margin-top: 0; }
-
-        /* Simulasi Output Colab (Dapat Diputar) */
-        .output-container { margin-top: 30px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; background: #fff; }
-        .output-header { background: #f0f0f0; padding: 10px; border-bottom: 1px solid #ccc; font-weight: bold; font-size: 14px; color: #666; }
-        .animation-box { width: 100%; height: 500px; display: flex; align-items: center; justify-content: center; background: #fafafa; position: relative; }
-        .video-placeholder { width: 90%; height: 90%; border: 1px solid #ddd; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        /* Coordinate Points */
+        .point { position: absolute; width: 8px; height: 8px; border-radius: 50%; transform: translate(-50%, -50%); }
+        .label { position: absolute; font-size: 11px; font-weight: bold; white-space: nowrap; }
         
-        /* Kontrol Playback Sederhana */
-        .controls { background: #f0f0f0; padding: 10px; display: flex; gap: 10px; align-items: center; }
-        .btn { padding: 5px 15px; cursor: pointer; background: #3498db; color: white; border: none; border-radius: 4px; }
-        .btn:hover { background: #2980b9; }
-        .progress-bar { flex-grow: 1; height: 10px; background: #ddd; border-radius: 5px; position: relative; }
-        .progress-fill { width: 45%; height: 100%; background: #3498db; border-radius: 5px; }
+        .blue { background: blue; }
+        .red { background: red; }
+        
+        .controls { background: #f8f8f8; padding: 15px; display: flex; align-items: center; gap: 15px; border-top: 1px solid #ccc; }
+        .play-btn { padding: 8px 20px; background: #0078d4; color: white; border: none; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Transformasi Geometri</h1>
-    <p>Analisis perpindahan titik koordinat menggunakan matriks translasi berdasarkan pergerakan objek.</p>
-
-    <div class="calc-section">
-        <h2>1. Analisis Transformasi</h2>
-        <p><strong>A &rarr; B (Vertikal):</strong> Asal (2, 3) | Tujuan (2, 1) | <span class="math">T = [0, -2]ᵀ</span></p>
-        <p><strong>B &rarr; C (Horizontal):</strong> Asal (2, 1) | Tujuan (4, 1) | <span class="math">T = [2, 0]ᵀ</span></p>
-        <p><strong>D &rarr; E (Vertikal):</strong> Asal (2, 4) | Tujuan (2, 0) | <span class="math">T = [0, -4]ᵀ</span></p>
-        <p><strong>E &rarr; F (Horizontal):</strong> Asal (2, 0) | Tujuan (4, 0) | <span class="math">T = [2, 0]ᵀ</span></p>
-    </div>
-
-    <h2>2. Ringkasan Matriks</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Pergerakan</th>
-                <th>Jenis</th>
-                <th>Matriks Translasi (T)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>A &rarr; B</td><td>Vertikal Bawah</td><td>[0, -2]ᵀ</td></tr>
-            <tr><td>B &rarr; C</td><td>Horizontal Kanan</td><td>[2, 0]ᵀ</td></tr>
-            <tr><td>D &rarr; E</td><td>Vertikal Bawah</td><td>[0, -4]ᵀ</td></tr>
-            <tr><td>E &rarr; F</td><td>Horizontal Kanan</td><td>[2, 0]ᵀ</td></tr>
-        </tbody>
-    </table>
-
-    <div class="code-header">
-        <span>Python Code (Matplotlib Animation)</span>
-        <span>main.py</span>
-    </div>
-    <pre><code>import numpy as np
+    <div class="code-container">
+        <span class="output-label"># INPUT KODE PYTHON</span>
+        <pre><code>import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
 
-# Inisialisasi koordinat
 x_coords = np.array([2, 3, 3, 2, 2])
 top_y_init = np.array([3, 3, 4, 4, 3])
 bottom_y_init = np.array([-4, -4, -3, -3, -4])
 
-# Fungsi animasi
+# ... (animasi matplotlib) ...
 def animate(frame):
     curr_top_y = top_y_init - frame
     curr_bottom_y = bottom_y_init + frame
-    line_top.set_data(x_coords, curr_top_y)
-    line_bottom.set_data(x_coords, curr_bottom_y)
-    return [line_top, line_bottom]
+    # Output koordinat ke grafik</code></pre>
+    </div>
 
-ani = animation.FuncAnimation(fig, animate, frames=9, interval=800)</code></pre>
+    <span class="output-label"># OUTPUT (ANIMASI INTERAKTIF)</span>
+    <div class="output-box">
+        <div class="output-header">Matplotlib Animation Player (JavaScript Simulation)</div>
+        <div class="canvas">
+            <div class="axis-x"></div>
+            <div class="axis-y"></div>
+            
+            <div id="p_top" class="point blue" style="left: 65%; top: 30%;"></div>
+            <div id="l_top" class="label" style="left: 66%; top: 28%; color: blue;">(2, 3)</div>
 
-    <h2>3. Hasil Visualisasi (Interactive Output)</h2>
-    <div class="output-container">
-        <div class="output-header">
-            Interactive Animation Output (Colab Simulation)
+            <div id="p_bot" class="point red" style="left: 65%; top: 75%;"></div>
+            <div id="l_bot" class="label" style="left: 66%; top: 76%; color: red;">(2, -4)</div>
         </div>
-        <div class="animation-box">
-            <div class="video-placeholder">
-                <svg width="300" height="300" viewBox="0 0 100 100">
-                    <line x1="0" y1="50" x2="100" y2="50" stroke="black" stroke-width="0.5"/>
-                    <line x1="50" y1="0" x2="50" y2="100" stroke="black" stroke-width="0.5"/>
-                    <rect x="55" y="30" width="10" height="10" fill="none" stroke="blue" stroke-width="1" stroke-dasharray="2">
-                        <animate attributeName="y" values="30;50;30" dur="4s" repeatCount="indefinite" />
-                    </rect>
-                    <rect x="55" y="70" width="10" height="10" fill="none" stroke="red" stroke-width="1" stroke-dasharray="2">
-                        <animate attributeName="y" values="70;50;70" dur="4s" repeatCount="indefinite" />
-                    </rect>
-                </svg>
-                <p style="font-size: 12px; color: #888;">Simulasi Pergerakan Titik Berdasarkan Matriks</p>
-            </div>
-        </div>
+        
         <div class="controls">
-            <button class="btn">Play</button>
-            <button class="btn">Stop</button>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
+            <button class="play-btn" onclick="runAnimation()">RUN ANIMATION</button>
+            <div style="flex-grow: 1; height: 4px; background: #ddd; position: relative;">
+                <div id="progress" style="width: 0%; height: 100%; background: #0078d4;"></div>
             </div>
-            <span style="font-size: 12px;">00:04 / 00:08</span>
+            <span id="frame_text" style="font-size: 12px;">Frame: 0/9</span>
         </div>
     </div>
-</div>
+
+    <script>
+        let frame = 0;
+        function runAnimation() {
+            if(frame > 8) frame = 0;
+            const interval = setInterval(() => {
+                // Perhitungan Translasi Visual
+                let topY = 30 + (frame * 5); // Bergerak turun
+                let botY = 75 - (frame * 5); // Bergerak naik
+                let coordTopY = 3 - frame;
+                let coordBotY = -4 + frame;
+
+                document.getElementById('p_top').style.top = topY + '%';
+                document.getElementById('l_top').style.top = (topY - 2) + '%';
+                document.getElementById('l_top').innerText = `(2, ${coordTopY})`;
+
+                document.getElementById('p_bot').style.top = botY + '%';
+                document.getElementById('l_bot').style.top = (botY + 2) + '%';
+                document.getElementById('l_bot').innerText = `(2, ${coordBotY})`;
+
+                document.getElementById('progress').style.width = (frame * 12.5) + '%';
+                document.getElementById('frame_text').innerText = `Frame: ${frame}/9`;
+
+                frame++;
+                if(frame > 8) clearInterval(interval);
+            }, 500);
+        }
+    </script>
 
 </body>
 </html>
