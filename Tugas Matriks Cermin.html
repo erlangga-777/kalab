@@ -7,103 +7,151 @@
         body { font-family: 'Consolas', monospace; background: #1a1a1a; color: #fff; padding: 20px; }
         .code-container { background: #282c34; padding: 20px; border-radius: 8px; border: 1px solid #444; margin-bottom: 25px; }
         pre { margin: 0; color: #abb2bf; font-size: 14px; overflow-x: auto; }
-        .keyword { color: #c678dd; }
-        .function { color: #61afef; }
-        .string { color: #98c379; }
         
-        /* Output Box */
+        /* Box Output JSHTML */
         .output-wrapper { background: white; border-radius: 8px; overflow: hidden; color: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .output-header { background: #f0f0f0; padding: 10px 15px; border-bottom: 1px solid #ccc; font-weight: bold; color: #666; font-size: 13px; }
-        .canvas { width: 100%; height: 500px; background: #fff; position: relative; border-bottom: 1px solid #ddd; }
         
-        /* Grid & Elements */
-        .axis-x { position: absolute; width: 100%; height: 2px; background: #000; top: 50%; }
-        .axis-y { position: absolute; height: 100%; width: 2px; background: #000; left: 50%; }
-        .grid-v { position: absolute; height: 100%; width: 1px; background: #eee; }
-        .grid-h { position: absolute; width: 100%; height: 1px; background: #eee; }
+        /* Canvas Simulation */
+        .canvas { width: 100%; height: 500px; background: #fff; position: relative; border-bottom: 1px solid #ddd; overflow: hidden; }
+        .grid { position: absolute; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(16, 1fr); grid-template-rows: repeat(16, 1fr); pointer-events: none; }
+        .grid div { border: 0.1px solid #eee; }
+        .axis-x { position: absolute; width: 100%; height: 2px; background: #000; top: 50%; z-index: 1; }
+        .axis-y { position: absolute; height: 100%; width: 2px; background: #000; left: 50%; z-index: 1; }
 
-        .shape { position: absolute; width: 40px; height: 40px; border: 3px dashed; transform: translate(-50%, -50%); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .blue-obj { border-color: #007bff; }
-        .red-obj { border-color: #dc3545; }
-        .coord-label { position: absolute; font-size: 12px; font-weight: bold; white-space: nowrap; }
+        /* Objects */
+        .shape { position: absolute; width: 30px; height: 30px; border: 3px dashed; transform: translate(-50%, -50%); z-index: 2; }
+        .blue-obj { border-color: blue; }
+        .red-obj { border-color: red; }
+        .coord-label { position: absolute; font-size: 11px; font-weight: bold; white-space: nowrap; }
 
-        .controls { background: #f8f9fa; padding: 15px; display: flex; align-items: center; gap: 15px; }
-        #play-btn { padding: 10px 25px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        #play-btn:hover { background: #218838; }
-        #frame-display { font-size: 14px; color: #444; font-weight: bold; }
+        /* Matplotlib JSHTML Controls */
+        .controls { background: #f8f9fa; padding: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; border-top: 1px solid #ddd; }
+        .btn-group { display: flex; gap: 2px; }
+        .btn { padding: 5px 10px; background: #e0e0e0; border: 1px solid #ccc; cursor: pointer; font-size: 12px; }
+        .btn:hover { background: #d0d0d0; }
+        .btn.active { background: #3498db; color: white; border-color: #2980b9; }
+        .slider { flex-grow: 1; max-width: 300px; }
     </style>
 </head>
 <body>
 
     <div class="code-container">
-<pre><code><span class="keyword">import</span> numpy <span class="keyword">as</span> np
-<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
-<span class="keyword">from</span> matplotlib <span class="keyword">import</span> animation
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import animation
+from IPython.display import HTML
 
 x_coords = np.array([2, 3, 3, 2, 2])
 top_y_init = np.array([3, 3, 4, 4, 3])
 bottom_y_init = np.array([-4, -4, -3, -3, -4])
 
-<span class="keyword">def</span> <span class="function">animate</span>(frame):
+def animate(frame):
     curr_top_y = top_y_init - frame
     curr_bottom_y = bottom_y_init + frame
-    <span class="keyword">return</span> [line_top, line_bottom]</code></pre>
+    line_top.set_data(x_coords, curr_top_y)
+    line_bottom.set_data(x_coords, curr_bottom_y)
+    return [line_top, line_bottom]
+
+ani = animation.FuncAnimation(fig, animate, frames=9, interval=800, blit=True)
+HTML(ani.to_jshtml())</code></pre>
     </div>
 
     <div class="output-wrapper">
-        <div class="output-header">Interactive Matplotlib JSHTML Output</div>
+        <div class="output-header">Matplotlib Animation Player</div>
         <div class="canvas" id="canvas">
-            <div class="axis-x"></div><div class="axis-y"></div>
+            <div class="grid"></div>
+            <div class="axis-x"></div>
+            <div class="axis-y"></div>
             
-            <div id="obj-top" class="shape blue-obj" style="left: 65%; top: 30%;">
-                <div id="lbl-top" class="coord-label" style="color: #007bff; top: -25px; left: 50%; transform: translateX(-50%);">(2, 3)</div>
+            <div id="obj-top" class="shape blue-obj" style="left: 62.5%; top: 31.25%;">
+                <div id="lbl-top" class="coord-label" style="color: blue; top: -20px;">(2, 3)</div>
             </div>
 
-            <div id="obj-bot" class="shape red-obj" style="left: 65%; top: 75%;">
-                <div id="lbl-bot" class="coord-label" style="color: #dc3545; bottom: -25px; left: 50%; transform: translateX(-50%);">(2, -4)</div>
+            <div id="obj-bot" class="shape red-obj" style="left: 62.5%; top: 75%;">
+                <div id="lbl-bot" class="coord-label" style="color: red; bottom: -20px;">(2, -4)</div>
             </div>
         </div>
 
         <div class="controls">
-            <button id="play-btn" onclick="start()">RUN ANIMATION</button>
-            <div style="flex-grow: 1; height: 6px; background: #ddd; border-radius: 3px; position: relative;">
-                <div id="progress" style="width: 0%; height: 100%; background: #28a745; border-radius: 3px; transition: width 0.4s;"></div>
+            <button class="btn" onclick="step(-1)">&#9664;</button>
+            <button id="play-pause" class="btn" onclick="togglePlay()">&#9654;</button>
+            <button class="btn" onclick="step(1)">&#9654;</button>
+            <input type="range" class="slider" id="frame-slider" min="0" max="8" value="0" oninput="seek(this.value)">
+            <span id="frame-num" style="font-size: 12px; min-width: 40px;">0 / 8</span>
+            <div class="btn-group">
+                <button id="once" class="btn active" onclick="setMode('once')">Once</button>
+                <button id="loop" class="btn" onclick="setMode('loop')">Loop</button>
+                <button id="reflect" class="btn" onclick="setMode('reflect')">Reflect</button>
             </div>
-            <span id="frame-display">Frame: 0 / 9</span>
         </div>
     </div>
 
     <script>
         let frame = 0;
-        let isRunning = false;
+        let playing = false;
+        let mode = 'once'; // once, loop, reflect
+        let direction = 1;
+        let interval;
 
-        function start() {
-            if (isRunning) return;
-            isRunning = true;
-            frame = 0;
+        // Generate Grid
+        const grid = document.querySelector('.grid');
+        for(let i=0; i<256; i++) grid.appendChild(document.createElement('div'));
+
+        function updateUI() {
+            // Visual mapping: coord 0 = 50%, coord 1 = 6.25% (1/16 of 100%)
+            let visualTopY = 50 - ((3 - frame) * 6.25);
+            let visualBotY = 50 - ((-4 + frame) * 6.25);
+
+            document.getElementById('obj-top').style.top = visualTopY + '%';
+            document.getElementById('lbl-top').innerText = `(2, ${3 - frame})`;
             
-            const interval = setInterval(() => {
-                // Skala visual: 50% adalah 0, 5% per unit koordinat
-                let visualTopY = 50 - ((3 - frame) * 5);
-                let visualBotY = 50 - ((-4 + frame) * 5);
+            document.getElementById('obj-bot').style.top = visualBotY + '%';
+            document.getElementById('lbl-bot').innerText = `(2, ${-4 + frame})`;
 
-                // Update posisi elemen
-                document.getElementById('obj-top').style.top = visualTopY + '%';
-                document.getElementById('lbl-top').innerText = `(2, ${3 - frame})`;
+            document.getElementById('frame-slider').value = frame;
+            document.getElementById('frame-num').innerText = `${frame} / 8`;
+        }
 
-                document.getElementById('obj-bot').style.top = visualBotY + '%';
-                document.getElementById('lbl-bot').innerText = `(2, ${-4 + frame})`;
+        function togglePlay() {
+            playing = !playing;
+            document.getElementById('play-pause').innerText = playing ? '&#10074;&#10074;' : '&#9654;';
+            if(playing) {
+                interval = setInterval(() => {
+                    frame += direction;
+                    if(frame > 8 || frame < 0) {
+                        if(mode === 'once') {
+                            frame = (frame > 8) ? 8 : 0;
+                            togglePlay();
+                        } else if(mode === 'loop') {
+                            frame = 0;
+                        } else if(mode === 'reflect') {
+                            direction *= -1;
+                            frame += direction * 2;
+                        }
+                    }
+                    updateUI();
+                }, 800);
+            } else {
+                clearInterval(interval);
+            }
+        }
 
-                // Update UI
-                document.getElementById('progress').style.width = (frame / 8 * 100) + '%';
-                document.getElementById('frame-display').innerText = `Frame: ${frame} / 9`;
+        function seek(val) {
+            frame = parseInt(val);
+            updateUI();
+        }
 
-                frame++;
-                if (frame > 8) {
-                    clearInterval(interval);
-                    isRunning = false;
-                }
-            }, 600);
+        function step(n) {
+            frame = Math.max(0, Math.min(8, frame + n));
+            updateUI();
+        }
+
+        function setMode(m) {
+            mode = m;
+            document.querySelectorAll('.btn-group .btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(m).classList.add('active');
+            direction = 1;
         }
     </script>
 </body>
