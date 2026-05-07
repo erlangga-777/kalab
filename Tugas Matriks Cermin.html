@@ -2,39 +2,27 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Output Transformasi Matriks</title>
+    <title>Transformasi Geometri</title>
     <style>
-        body { font-family: 'Consolas', monospace; background-color: #1e1e1e; color: #d4d4d4; padding: 20px; }
-        .code-container { background: #2d2d2d; border-radius: 8px; padding: 20px; margin-bottom: 30px; border: 1px solid #444; }
-        .output-label { color: #569cd6; font-weight: bold; margin-bottom: 10px; display: block; }
-        pre { margin: 0; color: #9cdcfe; font-size: 14px; overflow-x: auto; }
-        
-        /* Box Output Colab Style */
-        .output-box { background: white; border-radius: 8px; overflow: hidden; color: #333; }
-        .output-header { background: #f0f0f0; padding: 10px; border-bottom: 1px solid #ccc; font-size: 13px; color: #666; }
-        .canvas { background: #fff; height: 500px; position: relative; display: flex; justify-content: center; align-items: center; }
-        
-        /* Grid & Axes */
-        .grid { position: absolute; width: 100%; height: 100%; border: 0.5px solid #eee; }
+        body { font-family: 'Consolas', monospace; background: #121212; color: #e0e0e0; padding: 20px; line-height: 1.4; }
+        .code-block { background: #1e1e1e; padding: 15px; border-radius: 5px; border: 1px solid #333; margin-bottom: 20px; overflow-x: auto; color: #9cdcfe; }
+        .output-container { background: #fff; color: #000; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .canvas { width: 100%; height: 400px; background: #fdfdfd; border: 2px solid #ccc; position: relative; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; }
         .axis-x { position: absolute; width: 100%; height: 2px; background: #000; top: 50%; }
-        .axis-y { position: absolute; width: 2px; height: 100%; background: #000; left: 50%; }
-
-        /* Coordinate Points */
-        .point { position: absolute; width: 8px; height: 8px; border-radius: 50%; transform: translate(-50%, -50%); }
-        .label { position: absolute; font-size: 11px; font-weight: bold; white-space: nowrap; }
-        
-        .blue { background: blue; }
-        .red { background: red; }
-        
-        .controls { background: #f8f8f8; padding: 15px; display: flex; align-items: center; gap: 15px; border-top: 1px solid #ccc; }
-        .play-btn { padding: 8px 20px; background: #0078d4; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .axis-y { position: absolute; height: 100%; width: 2px; background: #000; left: 50%; }
+        .shape { position: absolute; width: 30px; height: 30px; border: 2px dashed; transition: all 0.5s ease-in-out; }
+        .label { position: absolute; font-size: 12px; font-weight: bold; white-space: nowrap; }
+        .controls { display: flex; gap: 15px; align-items: center; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #218838; }
     </style>
 </head>
 <body>
 
-    <div class="code-container">
-        <span class="output-label"># INPUT KODE PYTHON</span>
-        <pre><code>import numpy as np
+    <h1>Transformasi Geometri</h1>
+
+    <div class="code-block">
+<pre><code>import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
 
@@ -42,61 +30,50 @@ x_coords = np.array([2, 3, 3, 2, 2])
 top_y_init = np.array([3, 3, 4, 4, 3])
 bottom_y_init = np.array([-4, -4, -3, -3, -4])
 
-# ... (animasi matplotlib) ...
 def animate(frame):
     curr_top_y = top_y_init - frame
     curr_bottom_y = bottom_y_init + frame
-    # Output koordinat ke grafik</code></pre>
+    # Rendering output...</code></pre>
     </div>
 
-    <span class="output-label"># OUTPUT (ANIMASI INTERAKTIF)</span>
-    <div class="output-box">
-        <div class="output-header">Matplotlib Animation Player (JavaScript Simulation)</div>
-        <div class="canvas">
+    <div class="output-container">
+        <div class="canvas" id="canvas">
             <div class="axis-x"></div>
             <div class="axis-y"></div>
             
-            <div id="p_top" class="point blue" style="left: 65%; top: 30%;"></div>
-            <div id="l_top" class="label" style="left: 66%; top: 28%; color: blue;">(2, 3)</div>
-
-            <div id="p_bot" class="point red" style="left: 65%; top: 75%;"></div>
-            <div id="l_bot" class="label" style="left: 66%; top: 76%; color: red;">(2, -4)</div>
-        </div>
-        
-        <div class="controls">
-            <button class="play-btn" onclick="runAnimation()">RUN ANIMATION</button>
-            <div style="flex-grow: 1; height: 4px; background: #ddd; position: relative;">
-                <div id="progress" style="width: 0%; height: 100%; background: #0078d4;"></div>
+            <div id="blue-box" class="shape" style="border-color: blue; left: 60%; top: 30%;">
+                <div id="blue-lbl" class="label" style="color: blue; top: -20px;">(2, 3)</div>
             </div>
-            <span id="frame_text" style="font-size: 12px;">Frame: 0/9</span>
+
+            <div id="red-box" class="shape" style="border-color: red; left: 60%; top: 75%;">
+                <div id="red-lbl" class="label" style="color: red; bottom: -20px;">(2, -4)</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="play()">RUN ANIMATION</button>
+            <span id="frame-count">Frame: 0/9</span>
         </div>
     </div>
 
     <script>
-        let frame = 0;
-        function runAnimation() {
-            if(frame > 8) frame = 0;
-            const interval = setInterval(() => {
-                // Perhitungan Translasi Visual
-                let topY = 30 + (frame * 5); // Bergerak turun
-                let botY = 75 - (frame * 5); // Bergerak naik
-                let coordTopY = 3 - frame;
-                let coordBotY = -4 + frame;
-
-                document.getElementById('p_top').style.top = topY + '%';
-                document.getElementById('l_top').style.top = (topY - 2) + '%';
-                document.getElementById('l_top').innerText = `(2, ${coordTopY})`;
-
-                document.getElementById('p_bot').style.top = botY + '%';
-                document.getElementById('l_bot').style.top = (botY + 2) + '%';
-                document.getElementById('l_bot').innerText = `(2, ${coordBotY})`;
-
-                document.getElementById('progress').style.width = (frame * 12.5) + '%';
-                document.getElementById('frame_text').innerText = `Frame: ${frame}/9`;
-
-                frame++;
-                if(frame > 8) clearInterval(interval);
-            }, 500);
+        let f = 0;
+        function play() {
+            let timer = setInterval(() => {
+                let ty = 30 + (f * 5);
+                let ry = 75 - (f * 5);
+                
+                document.getElementById('blue-box').style.top = ty + '%';
+                document.getElementById('blue-lbl').innerText = `(2, ${3-f})`;
+                
+                document.getElementById('red-box').style.top = ry + '%';
+                document.getElementById('red-lbl').innerText = `(2, ${-4+f})`;
+                
+                document.getElementById('frame-count').innerText = `Frame: ${f}/9`;
+                
+                f++;
+                if (f > 8) { clearInterval(timer); f = 0; }
+            }, 600);
         }
     </script>
 
