@@ -2,43 +2,44 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Transformasi Geometri - Matplotlib Output</title>
+    <title>Transformasi Geometri - Full Code & Output</title>
     <style>
         body { font-family: 'Consolas', monospace; background: #1a1a1a; color: #fff; padding: 20px; }
-        .code-container { background: #282c34; padding: 15px; border-radius: 8px; border: 1px solid #444; margin-bottom: 25px; }
-        pre { margin: 0; color: #abb2bf; font-size: 13px; overflow-x: auto; line-height: 1.5; }
+        .section-label { color: #569cd6; font-weight: bold; margin-bottom: 10px; display: block; border-left: 4px solid #569cd6; padding-left: 10px; font-size: 18px; }
         
-        /* Layout Output ala Matplotlib JSHTML */
-        .output-wrapper { background: #ffffff; border-radius: 4px; overflow: hidden; color: #333; width: 100%; max-width: 850px; margin: auto; border: 1px solid #ccc; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        /* Container Kode Python */
+        .code-container { background: #282c34; padding: 20px; border-radius: 8px; border: 1px solid #444; margin-bottom: 30px; overflow-x: auto; }
+        pre { margin: 0; color: #abb2bf; font-size: 14px; line-height: 1.5; }
+
+        /* Container Output Interaktif */
+        .output-wrapper { background: #ffffff; border-radius: 4px; overflow: hidden; color: #333; width: 100%; max-width: 850px; margin: auto; border: 1px solid #ccc; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .canvas { width: 100%; height: 500px; background: #fff; position: relative; border-bottom: 1px solid #ddd; }
-        
-        /* Grid & Axes */
-        .grid-bg { position: absolute; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(16, 1fr); grid-template-rows: repeat(16, 1fr); }
-        .grid-bg div { border: 0.5px solid #f0f0f0; }
         .axis-x { position: absolute; width: 100%; height: 2px; background: #000; top: 50%; z-index: 1; }
         .axis-y { position: absolute; height: 100%; width: 2px; background: #000; left: 50%; z-index: 1; }
+        .grid { position: absolute; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(16, 1fr); grid-template-rows: repeat(16, 1fr); opacity: 0.1; }
+        .grid div { border: 1px solid #000; }
 
-        /* Objects */
+        /* Objek Grafik */
         .shape { position: absolute; width: 6.25%; height: 6.25%; border: 3px dashed; transform: translate(-50%, -50%); z-index: 2; transition: all 0.4s linear; }
         .blue-line { border-color: blue; }
         .red-line { border-color: red; }
-        .lbl { position: absolute; font-size: 10px; font-weight: bold; white-space: nowrap; }
+        .coord-text { position: absolute; font-size: 10px; font-weight: bold; white-space: nowrap; }
 
-        /* Matplotlib Animation Controls */
-        .controls-area { background: #fff; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .slider-box { width: 90%; display: flex; align-items: center; gap: 15px; }
-        .slider { flex-grow: 1; cursor: pointer; }
-        .btn-row { display: flex; gap: 4px; }
-        .btn { padding: 6px 12px; background: #f8f8f8; border: 1px solid #ccc; cursor: pointer; font-size: 14px; border-radius: 3px; display: flex; align-items: center; }
-        .btn:hover { background: #eee; }
-        .btn:active { background: #ddd; }
-        .mode-row { display: flex; gap: 20px; font-size: 13px; color: #555; margin-top: 5px; }
-        input[type="radio"] { cursor: pointer; }
+        /* Matplotlib JSHTML Controls */
+        .controls { background: #f0f0f0; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .slider-row { width: 90%; }
+        .slider { width: 100%; cursor: pointer; }
+        .btn-row { display: flex; gap: 5px; align-items: center; }
+        .btn { padding: 5px 12px; background: #fff; border: 1px solid #ccc; cursor: pointer; font-size: 14px; border-radius: 3px; display: flex; align-items: center; }
+        .btn:hover { background: #e0e0e0; }
+        .btn.active { background: #3498db; color: white; border-color: #2980b9; }
+        .mode-row { display: flex; gap: 15px; font-size: 13px; margin-top: 5px; }
     </style>
 </head>
 <body>
 
-<div class="code-container">
+    <span class="section-label">KODE PYTHON</span>
+    <div class="code-container">
 <pre><code>import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
@@ -90,102 +91,98 @@ ani = animation.FuncAnimation(fig, animate, frames=9, interval=800, blit=True)
 plt.close()
 
 HTML(ani.to_jshtml())</code></pre>
-</div>
+    </div>
 
-<div class="output-wrapper">
-    <div class="canvas">
-        <div class="grid-bg" id="grid"></div>
-        <div class="axis-x"></div>
-        <div class="axis-y"></div>
-        
-        <div id="blue-box" class="shape blue-line" style="left: 65.625%; top: 28.125%;">
-            <div id="bt1" class="lbl" style="color: blue; top: -18px; left: 0;">(2,3)</div>
-            <div id="bt2" class="lbl" style="color: blue; top: -18px; right: 0;">(3,3)</div>
+    <span class="section-label">OUTPUT</span>
+    <div class="output-wrapper">
+        <div class="canvas">
+            <div class="grid" id="grid"></div>
+            <div class="axis-x"></div>
+            <div class="axis-y"></div>
+            
+            <div id="blue-box" class="shape blue-line" style="left: 65.625%; top: 31.25%;">
+                <div id="bt1" class="coord-text" style="color: blue; top: -18px;">(2,3)</div>
+                <div id="bt2" class="coord-text" style="color: blue; top: -18px; right: 0;">(3,3)</div>
+            </div>
+
+            <div id="red-box" class="shape red-line" style="left: 65.625%; top: 71.875%;">
+                <div id="rt1" class="coord-text" style="color: red; bottom: -18px;">(2,-4)</div>
+                <div id="rt2" class="coord-text" style="color: red; bottom: -18px; right: 0;">(3,-4)</div>
+            </div>
         </div>
 
-        <div id="red-box" class="shape red-line" style="left: 65.625%; top: 71.875%;">
-            <div id="rt1" class="lbl" style="color: red; bottom: -18px; left: 0;">(2,-4)</div>
-            <div id="rt2" class="lbl" style="color: red; bottom: -18px; right: 0;">(3,-4)</div>
+        <div class="controls">
+            <div class="slider-row">
+                <input type="range" class="slider" id="scrub" min="0" max="8" value="0" oninput="seek(this.value)">
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="step(-9)">&#10072;&#9664;</button>
+                <button class="btn" onclick="step(-1)">&#9664;</button>
+                <button class="btn" id="play-pause" onclick="toggle()">&#9654;</button>
+                <button class="btn" onclick="step(1)">&#9654;</button>
+                <button class="btn" onclick="step(9)">&#9654;&#10072;</button>
+                <span id="info" style="margin-left: 10px; font-size: 12px;">0 / 8</span>
+            </div>
+            <div class="mode-row">
+                <label><input type="radio" name="m" id="once" onchange="setMode('once')"> Once</label>
+                <label><input type="radio" name="m" id="loop" checked onchange="setMode('loop')"> Loop</label>
+                <label><input type="radio" name="m" id="reflect" onchange="setMode('reflect')"> Reflect</label>
+            </div>
         </div>
     </div>
 
-    <div class="controls-area">
-        <div class="slider-box">
-            <input type="range" class="slider" id="frame-slider" min="0" max="8" value="0" oninput="seek(this.value)">
-        </div>
-        
-        <div class="btn-row">
-            <button class="btn" onclick="step(-9)">&#10072;&#9664;</button>
-            <button class="btn" onclick="step(-1)">&#9664;</button>
-            <button class="btn" id="play-btn" onclick="toggle()">&#9654;</button>
-            <button class="btn" onclick="step(1)">&#9654;</button>
-            <button class="btn" onclick="step(9)">&#9654;&#10072;</button>
-        </div>
+    <script>
+        let frame = 0;
+        let isPlaying = false;
+        let mode = 'loop';
+        let dir = 1;
+        let timer;
 
-        <div class="mode-row">
-            <label><input type="radio" name="m" value="once" onchange="setM(this.value)"> Once</label>
-            <label><input type="radio" name="m" value="loop" checked onchange="setM(this.value)"> Loop</label>
-            <label><input type="radio" name="m" value="reflect" onchange="setM(this.value)"> Reflect</label>
-            <span id="frame-info" style="margin-left: 10px; font-weight: bold;">0 / 8</span>
-        </div>
-    </div>
-</div>
+        const grid = document.getElementById('grid');
+        for(let i=0; i<256; i++) grid.appendChild(document.createElement('div'));
 
-<script>
-    let frame = 0;
-    let playing = false;
-    let mode = 'loop';
-    let dir = 1;
-    let loop;
+        function draw() {
+            // Skala visual 1 unit = 6.25% (100/16)
+            let ty = 50 - ((3 - frame) * 6.25);
+            let ry = 50 - ((-4 + frame) * 6.25);
 
-    const grid = document.getElementById('grid');
-    for(let i=0; i<256; i++) grid.appendChild(document.createElement('div'));
+            document.getElementById('blue-box').style.top = ty + '%';
+            document.getElementById('bt1').innerText = `(2,${3-frame})`;
+            document.getElementById('bt2').innerText = `(3,${3-frame})`;
 
-    function draw() {
-        // Visual Calculation: 1 coord = 6.25% (100/16)
-        let topY = 50 - ((3 - frame) * 6.25);
-        let botY = 50 - ((-4 + frame) * 6.25);
+            document.getElementById('red-box').style.top = ry + '%';
+            document.getElementById('rt1').innerText = `(2,${-4+frame})`;
+            document.getElementById('rt2').innerText = `(3,${-4+frame})`;
 
-        document.getElementById('blue-box').style.top = topY + '%';
-        document.getElementById('bt1').innerText = `(2,${3-frame})`;
-        document.getElementById('bt2').innerText = `(3,${3-frame})`;
-
-        document.getElementById('red-box').style.top = botY + '%';
-        document.getElementById('rt1').innerText = `(2,${-4+frame})`;
-        document.getElementById('rt2').innerText = `(3,${-4+frame})`;
-
-        document.getElementById('frame-slider').value = frame;
-        document.getElementById('frame-info').innerText = `${frame} / 8`;
-    }
-
-    function toggle() {
-        playing = !playing;
-        document.getElementById('play-btn').innerHTML = playing ? '&#10074;&#10074;' : '&#9654;';
-        if(playing) {
-            loop = setInterval(() => {
-                frame += dir;
-                if(frame > 8 || frame < 0) {
-                    if(mode === 'once') {
-                        frame = (frame > 8) ? 8 : 0;
-                        toggle();
-                    } else if(mode === 'loop') {
-                        frame = 0;
-                    } else if(mode === 'reflect') {
-                        dir *= -1;
-                        frame += (dir * 2);
-                    }
-                }
-                draw();
-            }, 800);
-        } else {
-            clearInterval(loop);
+            document.getElementById('scrub').value = frame;
+            document.getElementById('info').innerText = `${frame} / 8`;
         }
-    }
 
-    function seek(v) { frame = parseInt(v); draw(); }
-    function step(v) { frame = Math.max(0, Math.min(8, frame + v)); draw(); }
-    function setM(v) { mode = v; dir = 1; }
-</script>
+        function toggle() {
+            isPlaying = !isPlaying;
+            document.getElementById('play-pause').innerHTML = isPlaying ? '&#10074;&#10074;' : '&#9654;';
+            if(isPlaying) {
+                timer = setInterval(() => {
+                    frame += dir;
+                    if(frame > 8 || frame < 0) {
+                        if(mode === 'once') { 
+                            frame = (frame > 8) ? 8 : 0; 
+                            toggle(); 
+                        } else if(mode === 'loop') { 
+                            frame = 0; 
+                        } else if(mode === 'reflect') { 
+                            dir *= -1; 
+                            frame += (dir * 2); 
+                        }
+                    }
+                    draw();
+                }, 800);
+            } else { clearInterval(timer); }
+        }
 
+        function seek(v) { frame = parseInt(v); draw(); }
+        function step(v) { frame = Math.max(0, Math.min(8, frame + v)); draw(); }
+        function setMode(m) { mode = m; dir = 1; }
+    </script>
 </body>
 </html>
