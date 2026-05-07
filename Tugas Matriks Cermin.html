@@ -2,147 +2,189 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Output Transformasi Matriks</title>
+    <title>Transformasi Geometri - Matplotlib Output</title>
     <style>
         body { font-family: 'Consolas', monospace; background: #1a1a1a; color: #fff; padding: 20px; }
-        .code-container { background: #282c34; padding: 15px; border-radius: 8px; border: 1px solid #444; margin-bottom: 20px; }
-        pre { margin: 0; color: #abb2bf; font-size: 13px; overflow-x: auto; }
+        .code-container { background: #282c34; padding: 15px; border-radius: 8px; border: 1px solid #444; margin-bottom: 25px; }
+        pre { margin: 0; color: #abb2bf; font-size: 13px; overflow-x: auto; line-height: 1.5; }
         
-        /* Matplotlib JSHTML Style */
-        .output-wrapper { background: white; border-radius: 4px; overflow: hidden; color: #333; width: 100%; max-width: 800px; margin: auto; border: 1px solid #ccc; }
-        .canvas { width: 100%; height: 450px; background: #fff; position: relative; border-bottom: 1px solid #ddd; }
+        /* Layout Output ala Matplotlib JSHTML */
+        .output-wrapper { background: #ffffff; border-radius: 4px; overflow: hidden; color: #333; width: 100%; max-width: 850px; margin: auto; border: 1px solid #ccc; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        .canvas { width: 100%; height: 500px; background: #fff; position: relative; border-bottom: 1px solid #ddd; }
         
-        /* Koordinat & Grid */
-        .grid-container { position: absolute; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(16, 1fr); grid-template-rows: repeat(16, 1fr); }
-        .grid-container div { border: 0.1px solid #f0f0f0; }
+        /* Grid & Axes */
+        .grid-bg { position: absolute; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(16, 1fr); grid-template-rows: repeat(16, 1fr); }
+        .grid-bg div { border: 0.5px solid #f0f0f0; }
         .axis-x { position: absolute; width: 100%; height: 2px; background: #000; top: 50%; z-index: 1; }
         .axis-y { position: absolute; height: 100%; width: 2px; background: #000; left: 50%; z-index: 1; }
 
-        /* Objek Grafik */
-        .shape-container { position: absolute; width: 6.25%; height: 6.25%; border: 3px dashed; transform: translate(-50%, -50%); z-index: 2; display: flex; flex-wrap: wrap; }
+        /* Objects */
+        .shape { position: absolute; width: 6.25%; height: 6.25%; border: 3px dashed; transform: translate(-50%, -50%); z-index: 2; transition: all 0.4s linear; }
         .blue-line { border-color: blue; }
         .red-line { border-color: red; }
-        .point-label { position: absolute; font-size: 10px; font-weight: bold; white-space: nowrap; }
+        .lbl { position: absolute; font-size: 10px; font-weight: bold; white-space: nowrap; }
 
-        /* Controls Panel */
-        .controls-panel { background: #fff; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .slider-row { width: 80%; display: flex; align-items: center; gap: 10px; }
+        /* Matplotlib Animation Controls */
+        .controls-area { background: #fff; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .slider-box { width: 90%; display: flex; align-items: center; gap: 15px; }
         .slider { flex-grow: 1; cursor: pointer; }
-        .btn-row { display: flex; gap: 2px; }
-        .btn { padding: 4px 8px; background: #f0f0f0; border: 1px solid #ccc; cursor: pointer; font-size: 12px; border-radius: 2px; }
-        .btn:hover { background: #e0e0e0; }
-        .mode-row { display: flex; gap: 15px; font-size: 12px; margin-top: 5px; }
-        .active-mode { font-weight: bold; }
+        .btn-row { display: flex; gap: 4px; }
+        .btn { padding: 6px 12px; background: #f8f8f8; border: 1px solid #ccc; cursor: pointer; font-size: 14px; border-radius: 3px; display: flex; align-items: center; }
+        .btn:hover { background: #eee; }
+        .btn:active { background: #ddd; }
+        .mode-row { display: flex; gap: 20px; font-size: 13px; color: #555; margin-top: 5px; }
+        input[type="radio"] { cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="code-container">
-<pre><code># KODE PYTHON
-import numpy as np
+<pre><code>import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
 from IPython.display import HTML
 
-# (Logika animasi seperti yang diminta)
+x_coords = np.array([2, 3, 3, 2, 2])
+top_y_init = np.array([3, 3, 4, 4, 3])
+
+bottom_y_init = np.array([-4, -4, -3, -3, -4])
+
+fig, ax = plt.subplots(figsize=(10, 10))
+ax.set_xlim(-8, 8)
+ax.set_ylim(-8, 8)
+ax.set_aspect('equal')
+
+ax.set_xticks(np.arange(-8, 9, 1))
+ax.set_yticks(np.arange(-8, 9, 1))
+ax.grid(True, linestyle='-', alpha=0.3)
+
+ax.axhline(0, color='black', linewidth=3)
+ax.axvline(0, color='black', linewidth=1)
+
+line_top, = ax.plot([], [], color='blue', linestyle='--', linewidth=3, label='Matriks Atas')
+line_bottom, = ax.plot([], [], color='red', linestyle='--', linewidth=3, label='Matriks Bawah')
+
+texts_top = [ax.text(0, 0, '', color='blue', fontweight='bold', ha='center', va='bottom') for _ in range(4)]
+texts_bottom = [ax.text(0, 0, '', color='red', fontweight='bold', ha='center', va='top') for _ in range(4)]
+
+ax.legend(loc='upper right')
+
+def animate(frame):
+    curr_top_y = top_y_init - frame
+    curr_bottom_y = bottom_y_init + frame
+    
+    line_top.set_data(x_coords, curr_top_y)
+    line_bottom.set_data(x_coords, curr_bottom_y)
+    
+    for i in range(4):
+        texts_top[i].set_position((x_coords[i], curr_top_y[i]))
+        texts_top[i].set_text(f'({x_coords[i]},{curr_top_y[i]})')
+        
+        texts_bottom[i].set_position((x_coords[i], curr_bottom_y[i]))
+        texts_bottom[i].set_text(f'({x_coords[i]},{curr_bottom_y[i]})')
+        
+    return [line_top, line_bottom] + texts_top + texts_bottom
+
 ani = animation.FuncAnimation(fig, animate, frames=9, interval=800, blit=True)
+
+plt.close()
+
 HTML(ani.to_jshtml())</code></pre>
 </div>
 
 <div class="output-wrapper">
-    <div class="canvas" id="main-canvas">
-        <div class="grid-container" id="grid"></div>
+    <div class="canvas">
+        <div class="grid-bg" id="grid"></div>
         <div class="axis-x"></div>
         <div class="axis-y"></div>
         
-        <div id="box-top" class="shape-container blue-line" style="left: 65.625%; top: 31.25%;">
-            <div id="lbl-t1" class="point-label" style="color: blue; top: -15px; left: 0;">(2,3)</div>
-            <div id="lbl-t2" class="point-label" style="color: blue; top: -15px; right: 0;">(3,3)</div>
+        <div id="blue-box" class="shape blue-line" style="left: 65.625%; top: 28.125%;">
+            <div id="bt1" class="lbl" style="color: blue; top: -18px; left: 0;">(2,3)</div>
+            <div id="bt2" class="lbl" style="color: blue; top: -18px; right: 0;">(3,3)</div>
         </div>
 
-        <div id="box-bot" class="shape-container red-line" style="left: 65.625%; top: 71.875%;">
-            <div id="lbl-b1" class="point-label" style="color: red; bottom: -15px; left: 0;">(2,-4)</div>
-            <div id="lbl-b2" class="point-label" style="color: red; bottom: -15px; right: 0;">(3,-4)</div>
+        <div id="red-box" class="shape red-line" style="left: 65.625%; top: 71.875%;">
+            <div id="rt1" class="lbl" style="color: red; bottom: -18px; left: 0;">(2,-4)</div>
+            <div id="rt2" class="lbl" style="color: red; bottom: -18px; right: 0;">(3,-4)</div>
         </div>
     </div>
 
-    <div class="controls-panel">
-        <div class="slider-row">
-            <input type="range" class="slider" id="scrubber" min="0" max="8" value="0" oninput="manualSeek(this.value)">
+    <div class="controls-area">
+        <div class="slider-box">
+            <input type="range" class="slider" id="frame-slider" min="0" max="8" value="0" oninput="seek(this.value)">
         </div>
         
         <div class="btn-row">
-            <button class="btn" onclick="step(-9)">&#9646;&#9664;</button>
+            <button class="btn" onclick="step(-9)">&#10072;&#9664;</button>
             <button class="btn" onclick="step(-1)">&#9664;</button>
-            <button class="btn" id="play-btn" onclick="togglePlay()">&#9654;</button>
+            <button class="btn" id="play-btn" onclick="toggle()">&#9654;</button>
             <button class="btn" onclick="step(1)">&#9654;</button>
-            <button class="btn" onclick="step(9)">&#9654;&#9646;</button>
+            <button class="btn" onclick="step(9)">&#9654;&#10072;</button>
         </div>
 
         <div class="mode-row">
-            <label><input type="radio" name="mode" value="once" onchange="setMode(this.value)"> Once</label>
-            <label><input type="radio" name="mode" value="loop" checked onchange="setMode(this.value)"> Loop</label>
-            <label><input type="radio" name="mode" value="reflect" onchange="setMode(this.value)"> Reflect</label>
+            <label><input type="radio" name="m" value="once" onchange="setM(this.value)"> Once</label>
+            <label><input type="radio" name="m" value="loop" checked onchange="setM(this.value)"> Loop</label>
+            <label><input type="radio" name="m" value="reflect" onchange="setM(this.value)"> Reflect</label>
+            <span id="frame-info" style="margin-left: 10px; font-weight: bold;">0 / 8</span>
         </div>
     </div>
 </div>
 
 <script>
-    let currentFrame = 0;
-    let isPlaying = false;
-    let playMode = 'loop';
+    let frame = 0;
+    let playing = false;
+    let mode = 'loop';
     let dir = 1;
-    let timer;
+    let loop;
 
-    // Build Grid
     const grid = document.getElementById('grid');
     for(let i=0; i<256; i++) grid.appendChild(document.createElement('div'));
 
-    function update() {
-        // Skala: 1 unit = 6.25% (100/16)
-        let yTop = 50 - ((3 - currentFrame) * 6.25);
-        let yBot = 50 - ((-4 + currentFrame) * 6.25);
+    function draw() {
+        // Visual Calculation: 1 coord = 6.25% (100/16)
+        let topY = 50 - ((3 - frame) * 6.25);
+        let botY = 50 - ((-4 + frame) * 6.25);
 
-        document.getElementById('box-top').style.top = yTop + '%';
-        document.getElementById('lbl-t1').innerText = `(2,${3-currentFrame})`;
-        document.getElementById('lbl-t2').innerText = `(3,${3-currentFrame})`;
+        document.getElementById('blue-box').style.top = topY + '%';
+        document.getElementById('bt1').innerText = `(2,${3-frame})`;
+        document.getElementById('bt2').innerText = `(3,${3-frame})`;
 
-        document.getElementById('box-bot').style.top = yBot + '%';
-        document.getElementById('lbl-b1').innerText = `(2,${-4+currentFrame})`;
-        document.getElementById('lbl-b2').innerText = `(3,${-4+currentFrame})`;
+        document.getElementById('red-box').style.top = botY + '%';
+        document.getElementById('rt1').innerText = `(2,${-4+frame})`;
+        document.getElementById('rt2').innerText = `(3,${-4+frame})`;
 
-        document.getElementById('scrubber').value = currentFrame;
+        document.getElementById('frame-slider').value = frame;
+        document.getElementById('frame-info').innerText = `${frame} / 8`;
     }
 
-    function togglePlay() {
-        isPlaying = !isPlaying;
-        const btn = document.getElementById('play-btn');
-        btn.innerHTML = isPlaying ? '&#10074;&#10074;' : '&#9654;';
-        
-        if(isPlaying) {
-            timer = setInterval(() => {
-                currentFrame += dir;
-                if(currentFrame > 8 || currentFrame < 0) {
-                    if(playMode === 'once') {
-                        currentFrame = (currentFrame > 8) ? 8 : 0;
-                        togglePlay();
-                    } else if(playMode === 'loop') {
-                        currentFrame = 0;
-                    } else if(playMode === 'reflect') {
+    function toggle() {
+        playing = !playing;
+        document.getElementById('play-btn').innerHTML = playing ? '&#10074;&#10074;' : '&#9654;';
+        if(playing) {
+            loop = setInterval(() => {
+                frame += dir;
+                if(frame > 8 || frame < 0) {
+                    if(mode === 'once') {
+                        frame = (frame > 8) ? 8 : 0;
+                        toggle();
+                    } else if(mode === 'loop') {
+                        frame = 0;
+                    } else if(mode === 'reflect') {
                         dir *= -1;
-                        currentFrame += (dir * 2);
+                        frame += (dir * 2);
                     }
                 }
-                update();
+                draw();
             }, 800);
         } else {
-            clearInterval(timer);
+            clearInterval(loop);
         }
     }
 
-    function manualSeek(v) { currentFrame = parseInt(v); update(); }
-    function step(v) { currentFrame = Math.max(0, Math.min(8, currentFrame + v)); update(); }
-    function setMode(m) { playMode = m; dir = 1; }
+    function seek(v) { frame = parseInt(v); draw(); }
+    function step(v) { frame = Math.max(0, Math.min(8, frame + v)); draw(); }
+    function setM(v) { mode = v; dir = 1; }
 </script>
 
 </body>
