@@ -173,12 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Tugas 1 Dekomposisi QR.html">Tugas 1 Dekomposisi QR</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-</ul>
+        
 
     </div>
 </nav></div>
@@ -375,6 +370,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                     
+<!-- Bagian: Definisi Matriks A dan Kolomnya -->
 <section id="matriks-awal">
     <h2>Matriks A</h2>
     <pre>
@@ -409,6 +405,7 @@ a4 = [3]
     </pre>
 </section>
 
+<!-- Bagian: Langkah 1 - Cari q1 -->
 <section id="langkah-1">
     <h2>Langkah 1 - Cari q1</h2>
     <pre>
@@ -436,6 +433,7 @@ q1 ≈
     </pre>
 </section>
 
+<!-- Bagian: Langkah 2 - Cari v2 -->
 <section id="langkah-2">
     <h2>Langkah 2 - Cari v2</h2>
     <pre>
@@ -473,6 +471,7 @@ v2 =
     </pre>
 </section>
 
+<!-- Bagian: Langkah 3 - Cari q2 -->
 <section id="langkah-3">
     <h2>Langkah 3 - Cari q2</h2>
     <pre>
@@ -490,6 +489,7 @@ q2 ≈
     </pre>
 </section>
 
+<!-- Bagian: Langkah 4 - Cari v3 -->
 <section id="langkah-4">
     <h2>Langkah 4 - Cari v3</h2>
     <pre>
@@ -513,6 +513,7 @@ v3 ≈
     </pre>
 </section>
 
+<!-- Bagian: Langkah 5 - Cari q3 -->
 <section id="langkah-5">
     <h2>Langkah 5 - Cari q3</h2>
     <pre>
@@ -530,6 +531,7 @@ q3 ≈
     </pre>
 </section>
 
+<!-- Bagian: Langkah 6 - Cari q4 -->
 <section id="langkah-6">
     <h2>Langkah 6 - Cari q4</h2>
     <pre>
@@ -541,6 +543,7 @@ q4 ≈
     </pre>
 </section>
 
+<!-- Bagian: Hasil Akhir Matriks Q -->
 <section id="hasil-matriks-q">
     <h2>Hasil Matriks Q</h2>
     <pre>
@@ -553,13 +556,53 @@ Q ≈
     </pre>
 </section>
 
-<section id="referensi-colab">
-    <h2>Referensi Kode Program</h2>
-    <p>Anda dapat melihat simulasi atau eksekusi kode terkait perhitungan di atas melalui tautan Google Colab berikut:</p>
-    <ul>
-        <li><a href="https://colab.research.google.com/drive/1eb9VgcN6bwzs4e_R3WaU0ZHnYivGJogC#scrollTo=afvnbiDFBpkU&line=1&uniqifier=1" target="_blank">Google Colab - Line Perhitungan</a></li>
-        <li><a href="https://colab.research.google.com/drive/1eb9VgcN6bwzs4e_R3WaU0ZHnYivGJogC#scrollTo=afvnbiDFBpkU&fullscreenOutput=true" target="_blank">Google Colab - Tampilan Output Penuh</a></li>
-    </ul>
+<!-- Bagian: Verifikasi Menggunakan Python (NumPy) -->
+<section id="verifikasi-numpy">
+    <h2>Verifikasi Menggunakan Python (NumPy)</h2>
+    <pre>
+import numpy as np
+
+# Matriks A
+A = np.array([
+    [12, 5, 8, 3],
+    [7, 14, 1, 9],
+    [6, 2, 11, 4],
+    [10, 13, 15, 0]
+], dtype=float)
+
+# QR Decomposition (Gram-Schmidt)
+Q, R = np.linalg.qr(A)
+
+print("Matriks A:")
+print(A)
+
+print("\nMatriks Q:")
+print(Q)
+
+print("\nMatriks R:")
+print(R)
+    </pre>
+
+    <h2>Output Eksekusi</h2>
+    <pre>
+Matriks A:
+[[12.  5.  8.  3.]
+ [ 7. 14.  1.  9.]
+ [ 6.  2. 11.  4.]
+ [10. 13. 15.  0.]]
+
+Matriks Q:
+[[-0.66158142  0.54145042  0.46531772  0.22939244]
+ [-0.38592249 -0.69405358  0.4566254  -0.40105698]
+ [-0.33079071  0.31628459 -0.46463852 -0.75805845]
+ [-0.55131785 -0.35367375 -0.59923594  0.46030403]]
+
+Matriks R:
+[[-18.13835715 -16.53953539 -17.5870393   -6.78120951]
+ [  0.         -10.97468765   1.81157401  -3.35699261]
+ [  0.           0.          -9.92039557   3.64702772]
+ [  0.           0.           0.          -5.95356927]]
+    </pre>
 </section>
 
     <script type="text/x-thebe-config">
