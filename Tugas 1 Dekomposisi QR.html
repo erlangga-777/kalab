@@ -370,7 +370,29 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                     
-<!-- Bagian: Definisi Matriks A dan Kolomnya -->
+<!-- Bagian: Definisi Matriks A dan KolomnyaBerikut -->
+<section id="matriks-awal">
+ adalah kode HTML lengkap yang mengg    <h2>Matriks A</h2>
+    <pre>
+abungkan perhitungan Matriks A, langkah-langkah ortogonalisasi Gram-Schmidt (Q), perhitungan manual Matriks Segitiga Atas (R), hingga verifikasi menggunakan Python (NumA =
+[12   5   8   3]
+[ 7  14   1   9]
+[ 6   2  11   4]
+[10  13  15   0]
+    </pre>
+
+    <h2>KolomPy). 
+
+Kode ini sudah dib Matriks</h2>
+    <pre>
+a1 = [12]
+     [ 7]
+     ungkus dalam elemen-elemen `<section>[ 6]
+     [10]
+
+a` yang rapi sehingga siap langsung Anda tempel ke GitHub:
+```html
+<!-- Bagian 1: Definisi Matriks A dan Kolomnya -->
 <section id="matriks-awal">
     <h2>Matriks A</h2>
     <pre>
@@ -383,172 +405,50 @@ A =
 
     <h2>Kolom Matriks</h2>
     <pre>
-a1 = [12]
-     [ 7]
-     [ 6]
-     [10]
-
-a2 = [ 5]
-     [14]
-     [ 2]
-     [13]
-
-a3 = [ 8]
-     [ 1]
-     [11]
-     [15]
-
-a4 = [3]
-     [9]
-     [4]
-     [0]
+a1 = [12, 7, 6, 10]^T
+a2 = [ 5, 14, 2, 13]^T
+a3 = [ 8, 1, 11, 15]^T
+a4 = [ 3, 9, 4, 0]^T
     </pre>
 </section>
 
-<!-- Bagian: Langkah 1 - Cari q1 -->
-<section id="langkah-1">
-    <h2>Langkah 1 - Cari q1</h2>
+<!-- Bagian 2: Langkah Pencarian Matriks Q -->
+<section id="langkah-q">
+    <h2>Langkah</ 1 - Cari q1</h2>
     <pre>
 q1 = a1 / |a1|
-
-|a1| = √(12² + 7² + 6² + 10²)
-
-|a1| = √(144 + 49 + 36 + 100)
-
-|a1| = √329
+|a1| = √(12² + 7² + 6² + 10²) = √329 ≈ 18.138
+q1 ≈ [0.662, 0.386, 0.331, 0.552]^T
     </pre>
-    <pre>
-q1 =
-[12/√329]
-[ 7/√329]
-[ 6/√329]
-[10/√329]
-    </pre>
-    <pre>
-q1 ≈
-[0.662]
-[0.386]
-[0.331]
-[0.552]
-    </pre>
-</section>
 
-<!-- Bagian: Langkah 2 - Cari v2 -->
-<section id="langkah-2">
-    <h2>Langkah 2 - Cari v2</h2>
+    <h2>Langkah 2 - Cari v2 & q2</h2>
     <pre>
+a2 · q1 = 300 / √329 ≈ 16.539
 v2 = a2 - (a2 · q1)q1
+|v2| ≈ 11.241
+q2 = v2 / |v2| ≈ [-0.529, 0.678, -0.309, 0.345]^T
     </pre>
-    <pre>
-a2 · q1 =
-((5)(12) + (14)(7) + (2)(6) + (13)(10)) / √329
 
-= (60 + 98 + 12 + 130) / √329
-
-= 300 / √329
-    </pre>
+    <h2>Langkah 3 - Cari v3 & q3</h2>
     <pre>
-v2 =
-[ 5]
-[14]
-[ 2]
-[13]
-
--
-(300/329)
-
-[12]
-[ 7]
-[ 6]
-[10]
-    </pre>
-    <pre>
-v2 =
-[-1955/329]
-[ 2506/329]
-[-1142/329]
-[ 1277/329]
-    </pre>
-</section>
-
-<!-- Bagian: Langkah 3 - Cari q2 -->
-<section id="langkah-3">
-    <h2>Langkah 3 - Cari q2</h2>
-    <pre>
-q2 = v2 / |v2|
-    </pre>
-    <pre>
-|v2| ≈ 11.24
-    </pre>
-    <pre>
-q2 ≈
-[-0.529]
-[ 0.678]
-[-0.309]
-[ 0.345]
-    </pre>
-</section>
-
-<!-- Bagian: Langkah 4 - Cari v3 -->
-<section id="langkah-4">
-    <h2>Langkah 4 - Cari v3</h2>
-    <pre>
+a3 · q1 ≈ 17.587
+a3 · q2 ≈ -1.270
 v3 = a3 - (a3·q1)q1 - (a3·q2)q2
+|v3| ≈ 10.740
+q3 = v3 / |v3| ≈ [0.456, -0.491, 0.669, 0.305]^T
     </pre>
-    <pre>
-a3·q1 =
-((8)(12) + (1)(7) + (11)(6) + (15)(10)) / √329
 
-= 319 / √329
-    </pre>
+    <h2>Langkah 4 - Cari v4 & q4</h2>
     <pre>
-a3·q2 ≈ -1.27
-    </pre>
-    <pre>
-v3 ≈
-[ 4.896]
-[-5.279]
-[ 7.182]
-[ 3.273]
+q4 ≈ [-0.277, 0.393, 0.591, -0.649]^T
     </pre>
 </section>
 
-<!-- Bagian: Langkah 5 - Cari q3 -->
-<section id="langkah-5">
-    <h2>Langkah 5 - Cari q3</h2>
-    <pre>
-q3 = v3 / |v3|
-    </pre>
-    <pre>
-|v3| ≈ 10.74
-    </pre>
-    <pre>
-q3 ≈
-[ 0.456]
-[-0.491]
-[ 0.669]
-[ 0.305]
-    </pre>
-</section>
-
-<!-- Bagian: Langkah 6 - Cari q4 -->
-<section id="langkah-6">
-    <h2>Langkah 6 - Cari q4</h2>
-    <pre>
-q4 ≈
-[-0.277]
-[ 0.393]
-[ 0.591]
-[-0.649]
-    </pre>
-</section>
-
-<!-- Bagian: Hasil Akhir Matriks Q -->
+<!-- Bagian </3: Hasil Akhir Matriks Q -->
 <section id="hasil-matriks-q">
-    <h2>Hasil Matriks Q</h2>
-    <pre>
+    <h2>Hasil Matriks Q (Ortogonal)</h2>
+    pre>
 Q ≈
-
 [ 0.662  -0.529   0.456  -0.277]
 [ 0.386   0.678  -0.491   0.393]
 [ 0.331  -0.309   0.669   0.591]
@@ -556,9 +456,43 @@ Q ≈
     </pre>
 </section>
 
-<!-- Bagian: Verifikasi Menggunakan Python (NumPy) -->
+<!-- Bagian 4: Perhitungan Matriks R Manual -->
+section id="perhitungan-matriks-r">
+    <h2>Langkah 5 - Menghitung Matriks R</h2>
+    <p>Matriks R diperoleh dari nilai norm (panjang vektor v) dan hasil dot product:</p>
+    <pre>
+Baris 1:
+r11 = |a1| ≈ 18.138
+r12 = a2 · q1 ≈ 16.539
+r13 = a3 · q1 ≈ 17.587
+r14 = a4 · q1 ≈ 6.781
+
+Baris 2:
+r22 = |v2| ≈ 11.241
+r23 = a3 · q2 ≈ -1.270
+r24 = a4 · q2 ≈ 3.279
+
+Baris 3:
+r33 = |v3| ≈ 10.740
+r34 = a4 · q3 ≈ -0.375
+
+Baris 4:
+r44 = |v4| ≈ 5.954
+    </pre>
+
+    <h2>Hasil Matriks R (Manual)</h2>
+    <pre>
+R ≈
+[ 18.138   16.539   17.587    6.781]
+[  0.       11.241   -1.270    3.279]
+[  0.        0.      10.740   -0.375]
+[  0.        0.        0.      5.954]
+    </pre>
+</section>
+
+<!-- Bagian 5: Verifikasi Menggunakan Python (NumPy) -->
 <section id="verifikasi-numpy">
-    <h2>Verifikasi Menggunakan Python (NumPy)</h2>
+    <h2>Kode Verifikasi Python (NumPy)</h2>
     <pre>
 import numpy as np
 
@@ -575,15 +509,13 @@ Q, R = np.linalg.qr(A)
 
 print("Matriks A:")
 print(A)
-
 print("\nMatriks Q:")
 print(Q)
-
 print("\nMatriks R:")
 print(R)
     </pre>
 
-    <h2>Output Eksekusi</h2>
+    <h2>Output Eksekusi NumPy</h2>
     <pre>
 Matriks A:
 [[12.  5.  8.  3.]
