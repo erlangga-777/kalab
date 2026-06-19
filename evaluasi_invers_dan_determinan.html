@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Evaluasi Invers dan Determinan &#8212; My Sample Book</title>
+    <title>Evaluasi Invers dan Determinan &#8212; Web Saya</title>
   
     <script data-cfasync="false">
       document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -54,11 +54,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="docsearch:language" content="en"/>
     <style>
-        .section-label { color: #569cd6; font-weight: bold; margin-bottom: 10px; display: block; border-left: 4px solid #569cd6; padding-left: 10px; font-size: 18px; }
-        .code-container { background: #282c34; padding: 20px; border-radius: 8px; border: 1px solid #444; margin-bottom: 25px; overflow-x: auto; }
-        .code-container pre { margin: 0; color: #abb2bf; font-size: 14px; line-height: 1.5; }
-        .output-box { background: #1e1e1e; color: #dcdcdc; font-family: 'Consolas', monospace; padding: 15px; border-radius: 6px; border: 1px solid #3c3c3c; margin-bottom: 30px; font-size: 14px; white-space: pre-wrap; }
-        .math-block { background: rgba(250, 250, 250, 0.05); padding: 15px; border-radius: 6px; margin: 20px 0; border-left: 4px solid #4f46e5; }
+        .pembahasan-box {
+            background-color: var(--pst-color-surface, #f9f9f9);
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            border-radius: 0 4px 4px 0;
+        }
+        .soal-title {
+            font-weight: bold;
+            color: var(--pst-color-primary, #0078d4);
+            margin-top: 20px;
+        }
+        .matrix-display {
+            margin: 10px 0;
+            text-align: center;
+        }
     </style>
   </head>
   
@@ -85,6 +97,7 @@
       <div class="bd-container__inner bd-page-width">
       
         <div class="bd-sidebar-primary bd-sidebar">
+          
           <div class="sidebar-header-items__start sidebar-primary__section" style="text-align: center; padding: 15px 15px 0 15px;">
             <img src="profil.jpeg" alt="Foto Profil" class="img-fluid" style="border-radius: 8px; width: 100%; max-width: 240px; height: auto; object-fit: cover;" />
           </div>
@@ -120,6 +133,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="determinan_2.html">Determinan(2)</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="dekomposisi_qr.html">Dekomposisi QR</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="transformasi_linier_geometri.html">Transformasi Linier Geometri</a></li>
+                  <li class="toctree-l1"><a class="reference internal" href="tugas_matrik_cermin.html">Tugas Matrik Cermin</a></li>
                 </ul>
               </div>
             </nav>
@@ -179,102 +193,70 @@
               <article class="bd-article">
                 
                 <section class="tex2jax_ignore mathjax_ignore" id="evaluasi-invers-dan-determinan">
-                  <h1>Evaluasi Invers dan Determinan Matriks<a class="headerlink" href="#evaluasi-invers-dan-determinan" title="Link to this heading">#</a></h1>
-                  <p>Halaman ini berisikan evaluasi komputasi untuk menghitung nilai invers dan determinan dari suatu matriks persegi menggunakan pustaka komputasi numerik NumPy pada Python.</p>
+                  <h1>Evaluasi Invers dan Determinan<a class="headerlink" href="#evaluasi-invers-dan-determinan" title="Link to this heading">#</a></h1>
+                  <p>Halaman ini memuat pembahasan lengkap dari soal-soal latihan evaluasi pengerjaan matriks invers, determinan, serta sifat-sifat matriks dasar.</p>
                   
-                  <div class="math-block">
-                    Pembuktian relasi fundamental matriks dan inversnya:
-                    $$\text{Jika } A \cdot A^{-1} = I \text{, maka } \det(A) \neq 0$$
+                  <hr>
+
+                  <div class="soal-title">Soal 1</div>
+                  <p>Diketahui matriks-matriks berikut:</p>
+                  <div class="matrix-display">
+                    $$A = \begin{pmatrix} 3 & 0 \\ 0 & 5 \end{pmatrix}, \quad B = \begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix}$$
                   </div>
-
-                  <span class="section-label">KODE PYTHON (INPUT)</span>
-                  <div class="code-container">
-<pre><code>import numpy as np
-
-# Mendefinisikan matriks persegi 3x3
-A = np.array([
-    [4, 2, 1],
-    [3, 5, 2],
-    [1, 2, 3]
-])
-
-print("Matriks A:")
-print(A)
-
-# Menghitung nilai Determinan
-det_A = np.linalg.det(A)
-print("\nDeterminan dari matriks A:")
-print(round(det_A, 4))
-
-# Mengecek keujudan Invers berdasarkan nilai determinan
-if det_A != 0:
-    inv_A = np.linalg.inv(A)
-    print("\nInvers dari matriks A:")
-    print(inv_A)
-    
-    # Validasi hasil perkalian A dikali dengan Inversnya (Harus mendekati Matriks Identitas)
-    print("\nValidasi A * Inv(A) [Matriks Identitas]:")
-    print(np.round(np.dot(A, inv_A), 4))
-else:
-    print("\nMatriks Singular: Invers tidak dapat ditemukan karena determinan bernilai 0.")
-</code></pre>
-                  </div>
-
-                  <span class="section-label">OUTPUT EKSEKUSI PROGRAM</span>
-                  <div class="output-box">Matriks A:
-[[4 2 1]
- [3 5 2]
- [1 2 3]]
-
-Determinan dari matriks A:
-35.0
-
-Invers dari matriks A:
-[[ 0.31428571 -0.11428571 -0.02857143]
- [-0.2         0.31428571 -0.14285714]
- [ 0.02857143 -0.17142857  0.4       ]]
-
-Validasi A * Inv(A) [Matriks Identitas]:
-[[1. 0. 0.]
- [0. 1. 0.]
- [0. 0. 1.]]</div>
-
-                  <h2>Sifat Penting Determinan & Invers</h2>
+                  <p>Carilah:</p>
                   <ul>
-                    <li><strong>Matriks Non-Singular:</strong> Matriks yang memiliki nilai determinan tidak sama dengan nol ($\det(A) \neq 0$) sehingga matriks tersebut dipastikan memiliki invers.</li>
-                    <li><strong>Matriks Singular:</strong> Matriks dengan determinan bernilai nol, di mana baris atau kolomnya saling bergantung linier, sehingga inversnya tidak terdefinisi.</li>
+                    <li>a) $A^{-1}$</li>
+                    <li>b) $B^{-1}$</li>
+                    <li>c) $C^{-1}$</li>
                   </ul>
-                </section>
 
-              </article>
-            </div>
-            
-            <div class="bd-sidebar-secondary bd-toc">
-              <div class="sidebar-secondary-items sidebar-secondary__inner">
-                <div class="sidebar-secondary-item">
-                  <div class="page-toc tocsection onthispage"><i class="fa-solid fa-list"></i> Contents</div>
-                  <nav class="bd-toc-nav page-toc">
-                    <ul class="visible nav section-nav flex-column">
-                      <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-invers-dan-determinan">Kode Implementasi NumPy</a></li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          
-          <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner container">
-              <div class="footer-item"><p class="component-author">By The Jupyter Book Community</p></div>
-              <div class="footer-item"><p class="copyright">© Copyright 2023.<br/></p></div>
-            </div>
-          </footer>
-        </main>
-      </div>
-    </div>
+                  <div class="pembahasan-box">
+                    <h5>Pembahasan:</h5>
+                    <p>Rumus umum untuk invers matriks $2 \times 2$ berbentuk $M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ adalah:</p>
+                    $$M^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$
+                    
+                    <strong>a) Mencari $A^{-1}$:</strong><br>
+                    $\text{det}(A) = (3)(5) - (0)(0) = 15$<br>
+                    $$A^{-1} = \frac{1}{15} \begin{pmatrix} 5 & 0 \\ 0 & 3 \end{pmatrix} = \begin{pmatrix} \frac{1}{3} & 0 \\ 0 & \frac{1}{5} \end{pmatrix}$$
+                    <br>
+                    <strong>b) Mencari $B^{-1}$:</strong><br>
+                    $\text{det}(B) = (2)(3) - (1)(-1) = 6 + 1 = 7$<br>
+                    $$B^{-1} = \frac{1}{7} \begin{pmatrix} 3 & -1 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ \frac{1}{7} & \frac{2}{7} \end{pmatrix}$$
+                    <br>
+                    <strong>c) Mencari $C^{-1}$:</strong><br>
+                    $\text{det}(C) = (1)(-1) - (0)(2) = -1$<br>
+                    $$C^{-1} = \frac{1}{-1} \begin{pmatrix} -1 & 0 \\ -2 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix}$$
+                    <p><em>Catatan: Karena $C^{-1} = C$, matriks $C$ disebut sebagai matriks involutori.</em></p>
+                  </div>
 
-    <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
-  </body>
-</html>
+                  <div class="soal-title">Soal 2</div>
+                  <p>Gunakan matriks dari Soal 1 untuk membuktikan sifat hukum invers berikut:</p>
+                  <div class="matrix-display">
+                    $$(ABC)^{-1} = C^{-1}B^{-1}A^{-1}$$
+                  </div>
+
+                  <div class="pembahasan-box">
+                    <h5>Pembahasan:</h5>
+                    <p>Mari kita hitung kedua sisi secara terpisah untuk membuktikan kesamaan nilainya.</p>
+                    
+                    <strong>Langkah 1: Hitung Sisi Kiri $(ABC)^{-1}$</strong><br>
+                    Pertama, kalikan $A$ dan $B$:
+                    $$AB = \begin{pmatrix} 3 & 0 \\ 0 & 5 \end{pmatrix} \begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix} = \begin{pmatrix} 3(2)+0(-1) & 3(1)+0(3) \\ 0(2)+5(-1) & 0(1)+5(3) \end{pmatrix} = \begin{pmatrix} 6 & 3 \\ -5 & 15 \end{pmatrix}$$
+                    Kemudian kalikan hasil $(AB)$ dengan $C$:
+                    $$ABC = \begin{pmatrix} 6 & 3 \\ -5 & 15 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix} = \begin{pmatrix} 6(1)+3(2) & 6(0)+3(-1) \\ -5(1)+15(2) & -5(0)+15(-1) \end{pmatrix} = \begin{pmatrix} 12 & -3 \\ 25 & -15 \end{pmatrix}$$
+                    Sekarang, cari invers dari $(ABC)$:
+                    $$\text{det}(ABC) = (12)(-15) - (-3)(25) = -180 + 75 = -105$$
+                    $$(ABC)^{-1} = \frac{1}{-105} \begin{pmatrix} -15 & 3 \\ -25 & 12 \end{pmatrix} = \begin{pmatrix} \frac{1}{7} & -\frac{1}{35} \\ \frac{5}{21} & -\frac{4}{35} \end{pmatrix}$$
+                    <br>
+                    <strong>Langkah 2: Hitung Sisi Kanan $C^{-1}B^{-1}A^{-1}$</strong><br>
+                    Gunakan nilai invers yang sudah diperoleh dari Soal 1:
+                    $$C^{-1}B^{-1} = \begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix} \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ \frac{1}{7} & \frac{2}{7} \end{pmatrix} = \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ 2(\frac{3}{7}) - \frac{1}{7} & 2(-\frac{1}{7}) - \frac{2}{7} \end{pmatrix} = \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ \frac{5}{7} & -\frac{4}{7} \end{pmatrix}$$
+                    Terakhir, kalikan dengan $A^{-1}$:
+                    $$C^{-1}B^{-1}A^{-1} = \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ \frac{5}{7} & -\frac{4}{7} \end{pmatrix} \begin{pmatrix} \frac{1}{3} & 0 \\ 0 & \frac{1}{5} \end{pmatrix} = \begin{pmatrix} \frac{3}{7} \cdot \frac{1}{3} & -\frac{1}{7} \cdot \frac{1}{5} \\ \frac{5}{7} \cdot \frac{1}{3} & -\frac{4}{7} \cdot \frac{1}{5} \end{pmatrix} = \begin{pmatrix} \frac{1}{7} & -\frac{1}{35} \\ \frac{5}{21} & -\frac{4}{35} \end{pmatrix}$$
+                    <p>Karena hasil dari Sisi Kiri dan Sisi Kanan <strong>terbukti sama</strong>, sifat $(ABC)^{-1} = C^{-1}B^{-1}A^{-1}$ terpenuhi.</p>
+                  </div>
+
+                  <div class="soal-title">Soal 3</div>
+                  <p>Diketahui persamaan matriks berikut:</p>
+                  <div class="matrix-display">
+                    $$\begin{pmatrix} 2 & 3 \\ 1 & 2 \end{pmatrix} X = \begin{pmatrix} 3 & 0 \\
