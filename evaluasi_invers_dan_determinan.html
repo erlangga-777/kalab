@@ -2,8 +2,9 @@
 <html lang="en" data-content_root="./" >
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Evaluasi Invers dan Determinan &#8212; My sample book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Evaluasi Invers dan Determinan &#8212; My Sample BooK</title>
   
     <script data-cfasync="false">
       document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -34,6 +35,8 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Matriks Invers" href="matrik_invers.html" />
     <link rel="prev" title="Sistem Persamaaan Linear" href="sistem_persamaan_linier.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="docsearch:language" content="en"/>
   </head>
   
   <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%">
@@ -43,11 +46,16 @@
     <div class="bd-container__inner bd-page-width">
       
       <div class="bd-sidebar-primary bd-sidebar">
+        
+        <div class="sidebar-header-items__start sidebar-primary__section" style="text-align: center; padding: 15px 15px 0 15px;">
+          <img src="profil.jpeg" alt="Foto Profil" class="img-fluid" style="border-radius: 8px; width: 100%; max-width: 240px; height: auto; object-fit: cover;" />
+        </div>
+
         <div class="sidebar-primary-item">
           <a class="navbar-brand logo" href="intro.html">
-            <p class="title logo__title">My sample book</p>
           </a>
         </div>
+
         <div class="sidebar-primary-item">
           <nav class="bd-links bd-docs-nav" aria-label="Main">
             <div class="bd-toc-item navbar-nav active">
@@ -56,13 +64,14 @@
               </ul>
               <ul class="current nav bd-sidenav">
                 <li class="toctree-l1"><a class="reference internal" href="sistem_persamaan_linier.html">Sistem Persamaan Linier</a></li>
-                <li class="toctree-l1 current active"><a class="current reference internal" href="#">Aljabar Matriks</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="aljabar_matrik.html">Aljabar Matrik</a></li>
                 <li class="toctree-l1"><a class="reference internal" href="matrik_invers.html">Matrik (Invers)</a></li>
-                <li class="toctree-l1"><a class="reference internal" href="evaluasi_invers_dan_determinan.html">Evaluasi Invers dan Determinan</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="determinan.html">Determinan</a></li>
+                <li class="toctree-l1 current active"><a class="current reference internal" href="#">Evaluasi Invers dan Determinan</a></li>
                 <li class="toctree-l1"><a class="reference internal" href="determinan_2.html">Determinan(2)</a></li>
                 <li class="toctree-l1"><a class="reference internal" href="dekomposisi_qr.html">Dekomposisi QR</a></li>
                 <li class="toctree-l1"><a class="reference internal" href="transformasi_linier_geometri.html">Transformasi Linier Geometri</a></li>
-                <li class="toctree-l1"><a class="reference internal" href="tugas_matrik_cermin.html">Tugas_Matrik_Cermin</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="tugas_matrik_cermin.html">Tugas Matrik Cermin</a></li>
               </ul>
             </div>
           </nav>
@@ -86,12 +95,12 @@
                   <section id="penjumlahan-matriks">
                     <h3>Penjumlahan Matriks</h3>
                     <p>Dua matriks dapat dijumlahkan jika dan hanya jika kedua matriks tersebut memiliki ordo (dimensi) yang sama. Penjumlahan dilakukan dengan menambahkan elemen-elemen yang seletak.</p>
-                    <p>Jika \(A = [a_{ij}]\) dan \(B = [b_{ij}]\), maka \(A + B = [a_{ij} + b_{ij}]\).</p>
+                    <p>Jika \(A = [a_{ij}]\) and \(B = [b_{ij}]\), maka \(A + B = [a_{ij} + b_{ij}]\).</p>
                     <div class="cell docutils container">
                       <div class="cell_input docutils container">
                         <div class="highlight-ipython3 notranslate"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><p>([[1, 2], [3, 4]])</p>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><p>([[5, 6], [7, 8]])</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span>
 </pre></div></div>
                       <div class="cell_output docutils container">
@@ -115,7 +124,7 @@
                       <div class="cell docutils container">
                         <div class="cell_input docutils container">
                           <div class="highlight-ipython3 notranslate"><pre><span></span><span class="c1"># Perkalian titik (dot product) menggunakan NumPy</span>
-<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,  <span class="n">B</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 </pre></div></div>
                         <div class="cell_output docutils container">
