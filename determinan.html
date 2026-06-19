@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Determinan &#8212; Web Saya</title>
+    <title>Determinan &#8212; My Sample BooK</title>
   
     <script data-cfasync="false">
       document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -94,7 +94,7 @@
                <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <span class="search-button__default-text">Search</span>
-                <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+                <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
                </button>
             `);
             </script>
@@ -110,6 +110,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="sistem_persamaan_linier.html">Sistem Persamaan Linier</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="aljabar_matrik.html">Aljabar Matrik</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="matrik_invers.html">Matrik (Invers)</a></li>
+                  <li class="toctree-l1"><a class="reference internal" href="determinan.html">Determinan</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="evaluasi_invers_dan_determinan.html">Evaluasi Invers dan Determinan</a></li>
                   <li class="toctree-l1 current active"><a class="current reference internal" href="#">Determinan</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="determinan_2.html">Determinan(2)</a></li>
@@ -196,9 +197,9 @@
                     <div class="cell_input docutils container">
                       <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span> <span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
-<span class="n">B</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="n">B</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><p>([[<span class="mi">2</span>, <span class="mi">3</span>, <span class="mi">5</span>],[<span class="mi">8</span>, <span class="mi">4</span>, <span class="mi">7</span>],[<span class="mi">6</span>, <span class="mi">9</span>, <span class="mi">1</span>]]</p>)
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><p>)</p>
+<span class="nb">print</span><span class="p">(</span><span class="n">B</span><p>)</p>
 </pre></div></div>
                     </div>
                     <div class="cell_output docutils container">
@@ -229,7 +230,7 @@
                     
                     <div class="cell docutils container">
                       <div class="cell_input docutils container">
-                        <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+                        <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">I</span><span class="p">))</span>
 </pre></div></div>
                       </div>
@@ -245,7 +246,7 @@
                     
                     <div class="cell docutils container">
                       <div class="cell_input docutils container">
-                        <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+                        <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><p>([[<span class="mi">1</span>,<span class="mi">4</span>,<span class="mi">2</span>],[<span class="mi">1</span>,<span class="mi">1</span>,<span class="mi">1</span>],[<span class="mi">3</span>,<span class="mi">2</span>,<span class="mi">1</span>]]</p>)
 <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
 </pre></div></div>
                       </div>
@@ -261,8 +262,8 @@
                     
                     <div class="cell docutils container">
                       <div class="cell_input docutils container">
-                        <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
+                        <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><p>([[<span class="mi">1</span>,<span class="mi">4</span>,<span class="mi">2</span>],[<span class="mi">2</span>,<span class="mi">8</span>,<span class="mi">4</span>],[<span class="mi">3</span>,<span class="mi">2</span>,<span class="mi">1</span>]]</p>)
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">B</span><p>)</p>)
 </pre></div></div>
                       </div>
                       <div class="cell_output docutils container">
@@ -281,7 +282,7 @@
                     
                     <div class="cell docutils container">
                       <div class="cell_input docutils container">
-                        <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_segitiga</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+                        <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_segitiga</span> = <span class="n">np</span><span class="o">.</span><span class="n">array</span><p>([[<span class="mi">1</span>,<span class="mi">4</span>,<span class="mi">2</span>],[<span class="mi">0</span>,<span class="mi">4</span>,<span class="mi">1</span>],[<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">1</span>]]</p>)
 <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A_segitiga</span><span class="p">)))</span>
 </pre></div></div>
                       </div>
