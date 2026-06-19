@@ -228,6 +228,76 @@
                     <p><span class="math notranslate nohighlight">\(\begin{bmatrix} x' \\ y' \end{bmatrix} = M \begin{bmatrix} x \\ y \end{bmatrix}, \\ \begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix} \begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 1 \\ -2 \end{bmatrix}\)</span></p>
                     <p><span class="math notranslate nohighlight">\(A' = \begin{bmatrix} 1 \\ -2 \end{bmatrix} \)</span></p>
                   </section>
+
+                  <div class="admonition">
+                <span class="admonition-title">1. Transformasi A ke B</span>
+                <p>Asal: <b>(2, 3)</b> | Tujuan: <b>(2, 1)</b></p>
+                <div class="math-code">
+                    x' = x + a → 2 = 2 + a → <b>a = 0</b><br>
+                    y' = y + b → 1 = 3 + b → <b>b = -2</b>
+                </div>
+                <p>Matriks Translasi: <b>T = [0, -2]<sup>T</sup></b></p>
+            </div>
+
+            <div class="admonition">
+                <span class="admonition-title">2. Transformasi B ke C</span>
+                <p>Asal: <b>(2, 1)</b> | Tujuan: <b>(4, 1)</b></p>
+                <div class="math-code">
+                    x' = x + a → 4 = 2 + a → <b>a = 2</b><br>
+                    y' = y + b → 1 = 1 + b → <b>b = 0</b>
+                </div>
+                <p>Matriks Translasi: <b>T = [2, 0]<sup>T</sup></b></p>
+            </div>
+
+            <div class="admonition">
+                <span class="admonition-title">3. Transformasi D ke E</span>
+                <p>Asal: <b>(2, 4)</b> | Tujuan: <b>(2, 0)</b></p>
+                <div class="math-code">
+                    x' = x + a → 2 = 2 + a → <b>a = 0</b><br>
+                    y' = y + b → 0 = 4 + b → <b>b = -4</b>
+                </div>
+                <p>Matriks Translasi: <b>T = [0, -4]<sup>T</sup></b></p>
+            </div>
+
+            <div class="admonition">
+                <span class="admonition-title">4. Transformasi E ke F</span>
+                <p>Asal: <b>(2, 0)</b> | Tujuan: <b>(4, 0)</b></p>
+                <div class="math-code">
+                    x' = x + a → 4 = 2 + a → <b>a = 2</b><br>
+                    y' = y + b → 0 = 0 + b → <b>b = 0</b>
+                </div>
+                <p>Matriks Translasi: <b>T = [2, 0]<sup>T</sup></b></p>
+            </div>
+
+            <h2>Ringkasan Matriks</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pergerakan</th>
+                        <th>Jenis Transformasi</th>
+                        <th>Matriks (T)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>A → B</td><td>Vertikal (Bawah 2)</td><td>[0, -2]<sup>T</sup></td></tr>
+                    <tr><td>B → C</td><td>Horizontal (Kanan 2)</td><td>[2, 0]<sup>T</sup></td></tr>
+                    <tr><td>D → E</td><td>Vertikal (Bawah 4)</td><td>[0, -4]<sup>T</sup></td></tr>
+                    <tr><td>E → F</td><td>Horizontal (Kanan 2)</td><td>[2, 0]<sup>T</sup></td></tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h2>Visualisasi Grafik GeoGebra</h2>
+            <p>Klik dan geser pada grafik untuk melihat koordinat lebih detail.</p>
+            <div style="width: 100%; max-width: 800px; margin: auto;">
+                <iframe src="https://www.geogebra.org/calculator/fag6jxbs?embed" 
+                        width="100%" height="500px" 
+                        style="border: 1px solid #e1e4e8; border-radius: 8px;" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+                  
                 </section>
 
                 <script type="text/x-thebe-config">
