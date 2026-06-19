@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Aljabar Matrik &#8212; My sample book</title>
+    <title>Aljabar Matrik &#8212; Web Saya</title>
   
     <script data-cfasync="false">
       document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -80,14 +80,11 @@
         <div class="bd-sidebar-primary bd-sidebar">
           
           <div class="sidebar-header-items__start sidebar-primary__section" style="text-align: center; padding: 15px 15px 0 15px;">
-            <div class="profile-picture-container">
-              <img src="profil.jpeg" alt="Foto Profil" class="img-fluid" style="border-radius: 8px; width: 100%; max-width: 240px; height: auto; object-fit: cover;" />
-            </div>
+            <img src="profil.jpeg" alt="Foto Profil" class="img-fluid" style="border-radius: 8px; width: 100%; max-width: 240px; height: auto; object-fit: cover;" />
           </div>
 
           <div class="sidebar-primary-item">
             <a class="navbar-brand logo" href="intro.html">
-              <p class="title logo__title">My sample book</p>
             </a>
           </div>
 
@@ -173,37 +170,6 @@
                 </div>
               </div>
 
-              <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Aljabar Matriks</h1>
-                <div id="print-main-content">
-                  <div id="jb-print-toc">
-                    <div><h2> Contents </h2></div>
-                    <nav aria-label="Page">
-                      <ul class="visible nav section-nav flex-column">
-                        <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Aljabar Matriks</a>
-                          <ul class="visible nav section-nav flex-column">
-                            <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operasi-bilangan-matriks">Operasi Bilangan Matriks</a>
-                              <ul class="nav section-nav flex-column">
-                                <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjumlahan-matriks">Penjumlahan Matriks</a></li>
-                                <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perkalian-matriks">Perkalian Matriks</a>
-                                  <ul class="nav section-nav flex-column">
-                                    <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perkalian-matriks-dengan-konstanta">1. Perkalian Matriks dengan Konstanta</a></li>
-                                    <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perkalian-antarmatriks">2. Perkalian AntarMatriks</a></li>
-                                  </ul>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </li>
-                        <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-transpose">Matriks Transpose</a></li>
-                        <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-elementer">Matriks Elementer</a></li>
-                        <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-invers">Matriks Invers</a></li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-              </div>
-
               <div id="searchbox"></div>
               <article class="bd-article">
                 
@@ -281,7 +247,7 @@
                           <div class="cell_input docutils container">
                             <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
-<span class="n">N</span> <span class="o">=</span> <span class="n">M</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">M</span> * <span class="mi">5</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 </pre></div></div>
                           </div>
@@ -301,19 +267,19 @@
                         <p>Adalah Operasi yang mengalikan matrik dengan matrik lainnya salah satu syarat perkalian antar matrik adalah kolom matrik yang mengalikan sama dengan baris matrik yang dikalikan.</p>
                         <div class="cell docutils container">
                           <div class="cell_input docutils container">
-                            <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mA</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">]]</span>
-<span class="n">mB</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mA</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">mA</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">mB</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">hasil</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="n">hasil1</span><span class="o">=</span><span class="p">[]</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
-        <span class="n">jumlah</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
-            <span class="n">jumlah</span> <span class="o">+=</span> <span class="n">mA</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">mB</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-        <span class="n">hasil1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jumlah</span><span class="p">)</span>
-    <span class="n">hasil</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hasil1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span>
+                            <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mA</span> = [[<span class="mi">4</span>,<span class="mi">2</span>,<span class="mi">1</span>], [<span class="mi">0</span>,<span class="mi">8</span>,<span class="mi">7</span>]]
+<span class="n">mB</span> = [[<span class="mi">0</span>,<span class="mi">5</span>], [<span class="mi">2</span>,<span class="mi">2</span>], [<span class="mi">6</span>,<span class="mi">5</span>]]
+<span class="n">x</span>, <span class="n">y</span>, <span class="n">z</span> = <span class="nb">len</span>(<span class="n">mA</span>), <span class="nb">len</span>(<span class="n">mA</span>[<span class="mi">0</span>]), <span class="nb">len</span>(<span class="n">mB</span>[<span class="mi">0</span>])
+<span class="n">hasil</span> = []
+for <span class="n">i</span> in <span class="nb">range</span>(<span class="n">x</span>):
+    <span class="n">hasil1</span>=[]
+    for <span class="n">j</span> in <span class="nb">range</span>(<span class="n">z</span>):
+        <span class="n">jumlah</span> = <span class="mi">0</span>
+        for <span class="n">k</span> in <span class="nb">range</span>(<span class="n">y</span>):
+            <span class="n">jumlah</span> += <span class="n">mA</span>[<span class="n">i</span>][<span class="n">k</span>] * <span class="n">mB</span>[<span class="n">k</span>][<span class="n">j</span>]
+        <span class="n">hasil1</span>.<span class="n">append</span>(<span class="n">jumlah</span>)
+    <span class="n">hasil</span>.<span class="n">append</span>(<span class="n">hasil1</span>)
+<span class="nb">print</span>(<span class="n">hasil</span>)
 </pre></div></div>
                           </div>
                           <div class="cell_output docutils container">
@@ -363,7 +329,7 @@
                   <div class="cell docutils container">
                     <div class="cell_input docutils container">
                       <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
-<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">. linalg</span><span class="o">.inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">A_inv</span><span class="p">)</span>
 </pre></div></div>
                     </div>
