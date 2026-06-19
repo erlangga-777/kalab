@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Evaluasi Invers dan Determinan &#8212; Web Saya</title>
+    <title>Evaluasi Invers dan Determinan &#8212; My Sample Book</title>
   
     <script data-cfasync="false">
       document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -46,32 +46,13 @@
     <script src="_static/design-tabs.js?v=36754332"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'evaluasi_invers_dan_determinan';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'formula_determinan';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Determinan(2)" href="determinan_2.html" />
+    <link rel="next" title="Dekomposisi QR" href="dekomposisi_qr.html" />
     <link rel="prev" title="Determinan" href="determinan.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="docsearch:language" content="en"/>
-    <style>
-        .pembahasan-box {
-            background-color: var(--pst-color-surface, #f9f9f9);
-            border-left: 4px solid #28a745;
-            padding: 15px;
-            margin-top: 15px;
-            margin-bottom: 25px;
-            border-radius: 0 4px 4px 0;
-        }
-        .soal-title {
-            font-weight: bold;
-            color: var(--pst-color-primary, #0078d4);
-            margin-top: 20px;
-        }
-        .matrix-display {
-            margin: 10px 0;
-            text-align: center;
-        }
-    </style>
   </head>
   
   <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%">
@@ -103,7 +84,8 @@
           </div>
 
           <div class="sidebar-primary-item">
-            <a class="navbar-brand logo" href="intro.html"></a>
+            <a class="navbar-brand logo" href="intro.html">
+            </a>
           </div>
 
           <div class="sidebar-primary-item">
@@ -112,7 +94,7 @@
                <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <span class="search-button__default-text">Search</span>
-                <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+                <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
                </button>
             `);
             </script>
@@ -129,8 +111,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="aljabar_matrik.html">Aljabar Matrik</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="matrik_invers.html">Matrik (Invers)</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="determinan.html">Determinan</a></li>
-                  <li class="toctree-l1 current active"><a class="current reference internal" href="#">Evaluasi Invers dan Determinan</a></li>
-                  <li class="toctree-l1"><a class="reference internal" href="determinan_2.html">Determinan(2)</a></li>
+                  <li class="toctree-l1"><a class="reference internal" href="evaluasi_invers_dan_determinan.html">Evaluasi Invers dan Determinan</a></li>
+                  <li class="toctree-l1 current active"><a class="current reference internal" href="#">Determinan(2)</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="dekomposisi_qr.html">Dekomposisi QR</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="transformasi_linier_geometri.html">Transformasi Linier Geometri</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="tugas_matrik_cermin.html">Tugas Matrik Cermin</a></li>
@@ -157,13 +139,13 @@
                           <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories"><i class="fab fa-github"></i></button>
                           <ul class="dropdown-menu">
                             <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank" class="btn btn-sm btn-source-repository-button dropdown-item" title="Source repository" data-bs-placement="left" data-bs-toggle="tooltip"><span class="btn__icon-container"><i class="fab fa-github"></i></span><span class="btn__text-container">Repository</span></a></li>
-                            <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fevaluasi_invers_dan_determinan.html&body=Your%20issue%20content%20here." target="_blank" class="btn btn-sm btn-source-issues-button dropdown-item" title="Open an issue" data-bs-placement="left" data-bs-toggle="tooltip"><span class="btn__icon-container"><i class="fas fa-lightbulb"></i></span><span class="btn__text-container">Open issue</span></a></li>
+                            <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fformula_determinan.html&body=Your%20issue%20content%20here." target="_blank" class="btn btn-sm btn-source-issues-button dropdown-item" title="Open an issue" data-bs-placement="left" data-bs-toggle="tooltip"><span class="btn__icon-container"><i class="fas fa-lightbulb"></i></span><span class="btn__text-container">Open issue</span></a></li>
                           </ul>
                         </div>
                         <div class="dropdown dropdown-download-buttons">
                           <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page"><i class="fas fa-download"></i></button>
                           <ul class="dropdown-menu">
-                            <li><a href="_sources/evaluasi_invers_dan_determinan.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip"><span class="btn__icon-container"><i class="fas fa-file"></i></span><span class="btn__text-container">.ipynb</span></a></li>
+                            <li><a href="_sources/formula_determinan.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip"><span class="btn__icon-container"><i class="fas fa-file"></i></span><span class="btn__text-container">.ipynb</span></a></li>
                             <li><button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip"><span class="btn__icon-container"><i class="fas fa-file-pdf"></i></span><span class="btn__text-container">.pdf</span></button></li>
                           </ul>
                         </div>
@@ -189,74 +171,189 @@
                 </div>
               </div>
 
+              <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Formula Determinan</h1>
+                <div id="print-main-content">
+                  <div id="jb-print-toc">
+                    <div><h2> Contents </h2></div>
+                    <nav aria-label="Page">
+                      <ul class="visible nav section-nav flex-column">
+                        <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekspansi-kofaktor">Ekspansi Kofaktor</a></li>
+                        <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penggunaan-ekspansi-kofaktor">Penggunaan ekspansi kofaktor</a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+
               <div id="searchbox"></div>
               <article class="bd-article">
                 
-                <section class="tex2jax_ignore mathjax_ignore" id="evaluasi-invers-dan-determinan">
-                  <h1>Evaluasi Invers dan Determinan<a class="headerlink" href="#evaluasi-invers-dan-determinan" title="Link to this heading">#</a></h1>
-                  <p>Halaman ini memuat pembahasan lengkap dari soal-soal latihan evaluasi pengerjaan matriks invers, determinan, serta sifat-sifat matriks dasar.</p>
-                  
-                  <hr>
+                <section class="tex2jax_ignore mathjax_ignore" id="formula-determinan">
+                  <h1>Evaluasi Invers dan Determinan</h1>
 
-                  <div class="soal-title">Soal 1</div>
-                  <p>Diketahui matriks-matriks berikut:</p>
-                  <div class="matrix-display">
-                    $$A = \begin{pmatrix} 3 & 0 \\ 0 & 5 \end{pmatrix}, \quad B = \begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix}$$
-                  </div>
-                  <p>Carilah:</p>
-                  <ul>
-                    <li>a) $A^{-1}$</li>
-                    <li>b) $B^{-1}$</li>
-                    <li>c) $C^{-1}$</li>
-                  </ul>
+    <h2>A. Hitunglah determinan matriks berikut dengan menggunakan rumus ekspansi baris</h2>
+    <div class="rumus-utama">
+        $$\text{det}(A) = \sum_{k=1}^{n} (-1)^{i+k} a_{ik} M_{ik}$$
+    </div>
 
-                  <div class="pembahasan-box">
-                    <h5>Pembahasan:</h5>
-                    <p>Rumus umum untuk invers matriks $2 \times 2$ berbentuk $M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ adalah:</p>
-                    $$M^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$
-                    
-                    <strong>a) Mencari $A^{-1}$:</strong><br>
-                    $\text{det}(A) = (3)(5) - (0)(0) = 15$<br>
-                    $$A^{-1} = \frac{1}{15} \begin{pmatrix} 5 & 0 \\ 0 & 3 \end{pmatrix} = \begin{pmatrix} \frac{1}{3} & 0 \\ 0 & \frac{1}{5} \end{pmatrix}$$
-                    <br>
-                    <strong>b) Mencari $B^{-1}$:</strong><br>
-                    $\text{det}(B) = (2)(3) - (1)(-1) = 6 + 1 = 7$<br>
-                    $$B^{-1} = \frac{1}{7} \begin{pmatrix} 3 & -1 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ \frac{1}{7} & \frac{2}{7} \end{pmatrix}$$
-                    <br>
-                    <strong>c) Mencari $C^{-1}$:</strong><br>
-                    $\text{det}(C) = (1)(-1) - (0)(2) = -1$<br>
-                    $$C^{-1} = \frac{1}{-1} \begin{pmatrix} -1 & 0 \\ -2 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix}$$
-                    <p><em>Catatan: Karena $C^{-1} = C$, matriks $C$ disebut sebagai matriks involutori.</em></p>
-                  </div>
+    <div class="soal-box">
+        <span class="soal-title">Soal 1</span>
+        <p>Tentukan determinan dari matriks berikut:</p>
+        $$A = \begin{pmatrix} -7 & -5 \\ 1 & 4 \end{pmatrix}$$
+        
+        <div class="penyelesaian">
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Dipilih ekspansi berdasarkan Baris 1 (\(i=1\)), sehingga indeks kolom \(k\) berjalan dari \(1\) hingga \(2\).</p>
+            $$\text{det}(A) = (-1)^{1+1} a_{11} M_{11} + (-1)^{1+2} a_{12} M_{12}$$
+            
+            <p><strong>Suku Pertama (\(k=1\)):</strong></p>
+            <ul class="langkah-list">
+                <li>Elemen \(a_{11} = -7\)</li>
+                <li>Minor \(M_{11} = \text{det}([4]) = 4\)</li>
+                <li>Nilai suku: \((-1)^{2} \cdot (-7) \cdot 4 = 1 \cdot (-7) \cdot 4 = -28\)</li>
+            </ul>
+            
+            <p><strong>Suku Kedua (\(k=2\)):</strong></p>
+            <ul class="langkah-list">
+                <li>Elemen \(a_{12} = -5\)</li>
+                <li>Minor \(M_{12} = \text{det}([1]) = 1\)</li>
+                <li>Nilai suku: \((-1)^{3} \cdot (-5) \cdot 1 = (-1) \cdot (-5) \cdot 1 = 5\)</li>
+            </ul>
+            
+            <p>Maka, determinan matriks \(A\) adalah:</p>
+            $$\text{det}(A) = -28 + 5 = -23$$
+        </div>
+    </div>
 
-                  <div class="soal-title">Soal 2</div>
-                  <p>Gunakan matriks dari Soal 1 untuk membuktikan sifat hukum invers berikut:</p>
-                  <div class="matrix-display">
-                    $$(ABC)^{-1} = C^{-1}B^{-1}A^{-1}$$
-                  </div>
+    <div class="soal-box">
+        <span class="soal-title">Soal 2</span>
+        <p>Tentukan determinan dari matriks berikut:</p>
+        $$A = \begin{pmatrix} 0 & 2 & -3 \\ 1 & -2 & -1 \\ 0 & 0 & 1 \end{pmatrix}$$
+        
+        <div class="penyelesaian">
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Untuk efisiensi komputasi, dipilih ekspansi berdasarkan Baris 3 (\(i=3\)) karena memuat elemen nol terbanyak.</p>
+            $$\text{det}(A) = (-1)^{3+1} a_{31} M_{31} + (-1)^{3+2} a_{32} M_{32} + (-1)^{3+3} a_{33} M_{33}$$
+            
+            <p>Karena \(a_{31} = 0\) dan \(a_{32} = 0\), maka dua suku pertama bernilai nol. Kita hanya perlu mengevaluasi suku ketiga:</p>
+            <ul class="langkah-list">
+                <li>Elemen \(a_{33} = 1\)</li>
+                <li>Minor \(M_{33} = \begin{vmatrix} 0 & 2 \\ 1 & -2 \end{vmatrix} = (0 \cdot -2) - (2 \cdot 1) = 0 - 2 = -2\)</li>
+            </ul>
+            
+            <p>Maka, determinan matriks \(A\) adalah:</p>
+            $$\text{det}(A) = 0 + 0 + (-1)^{6} \cdot 1 \cdot (-2) = 1 \cdot 1 \cdot (-2) = -2$$
+        </div>
+    </div>
 
-                  <div class="pembahasan-box">
-                    <h5>Pembahasan:</h5>
-                    <p>Mari kita hitung kedua sisi secara terpisah untuk membuktikan kesamaan nilainya.</p>
-                    
-                    <strong>Langkah 1: Hitung Sisi Kiri $(ABC)^{-1}$</strong><br>
-                    Pertama, kalikan $A$ dan $B$:
-                    $$AB = \begin{pmatrix} 3 & 0 \\ 0 & 5 \end{pmatrix} \begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix} = \begin{pmatrix} 3(2)+0(-1) & 3(1)+0(3) \\ 0(2)+5(-1) & 0(1)+5(3) \end{pmatrix} = \begin{pmatrix} 6 & 3 \\ -5 & 15 \end{pmatrix}$$
-                    Kemudian kalikan hasil $(AB)$ dengan $C$:
-                    $$ABC = \begin{pmatrix} 6 & 3 \\ -5 & 15 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix} = \begin{pmatrix} 6(1)+3(2) & 6(0)+3(-1) \\ -5(1)+15(2) & -5(0)+15(-1) \end{pmatrix} = \begin{pmatrix} 12 & -3 \\ 25 & -15 \end{pmatrix}$$
-                    Sekarang, cari invers dari $(ABC)$:
-                    $$\text{det}(ABC) = (12)(-15) - (-3)(25) = -180 + 75 = -105$$
-                    $$(ABC)^{-1} = \frac{1}{-105} \begin{pmatrix} -15 & 3 \\ -25 & 12 \end{pmatrix} = \begin{pmatrix} \frac{1}{7} & -\frac{1}{35} \\ \frac{5}{21} & -\frac{4}{35} \end{pmatrix}$$
-                    <br>
-                    <strong>Langkah 2: Hitung Sisi Kanan $C^{-1}B^{-1}A^{-1}$</strong><br>
-                    Gunakan nilai invers yang sudah diperoleh dari Soal 1:
-                    $$C^{-1}B^{-1} = \begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix} \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ \frac{1}{7} & \frac{2}{7} \end{pmatrix} = \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ 2(\frac{3}{7}) - \frac{1}{7} & 2(-\frac{1}{7}) - \frac{2}{7} \end{pmatrix} = \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ \frac{5}{7} & -\frac{4}{7} \end{pmatrix}$$
-                    Terakhir, kalikan dengan $A^{-1}$:
-                    $$C^{-1}B^{-1}A^{-1} = \begin{pmatrix} \frac{3}{7} & -\frac{1}{7} \\ \frac{5}{7} & -\frac{4}{7} \end{pmatrix} \begin{pmatrix} \frac{1}{3} & 0 \\ 0 & \frac{1}{5} \end{pmatrix} = \begin{pmatrix} \frac{3}{7} \cdot \frac{1}{3} & -\frac{1}{7} \cdot \frac{1}{5} \\ \frac{5}{7} \cdot \frac{1}{3} & -\frac{4}{7} \cdot \frac{1}{5} \end{pmatrix} = \begin{pmatrix} \frac{1}{7} & -\frac{1}{35} \\ \frac{5}{21} & -\frac{4}{35} \end{pmatrix}$$
-                    <p>Karena hasil dari Sisi Kiri dan Sisi Kanan <strong>terbukti sama</strong>, sifat $(ABC)^{-1} = C^{-1}B^{-1}A^{-1}$ terpenuhi.</p>
-                  </div>
+    <div class="soal-box">
+        <span class="soal-title">Soal 3</span>
+        <p>Tentukan determinan dari matriks berikut:</p>
+        $$A = \begin{pmatrix} 1 & -3 & 1 & 1 \\ -3 & 1 & 1 & 1 \\ 1 & 1 & -3 & 1 \\ 1 & 1 & 1 & -3 \end{pmatrix}$$
+        
+        <div class="penyelesaian">
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Dipilih ekspansi berdasarkan Baris 1 (\(i=1\)):</p>
+            $$\text{det}(A) = 1 \cdot M_{11} - (-3) \cdot M_{12} + 1 \cdot M_{13} - 1 \cdot M_{14}$$
+            
+            <p>Perhitungan sub-determinan (Minor \(3 \times 3\)):</p>
+            <ul class="langkah-list">
+                <li>\(M_{11} = \begin{vmatrix} 1 & 1 & 1 \\ 1 & -3 & 1 \\ 1 & 1 & -3 \end{vmatrix} = 1(9-1) - 1(-3-1) + 1(1 - (-3)) = 8 + 4 + 4 = 16\)</li>
+                <li>\(M_{12} = \begin{vmatrix} -3 & 1 & 1 \\ 1 & -3 & 1 \\ 1 & 1 & -3 \end{vmatrix} = -3(9-1) - 1(-3-1) + 1(1 - (-3)) = -24 + 4 + 4 = -16\)</li>
+                <li>\(M_{13} = \begin{vmatrix} -3 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & -3 \end{vmatrix} = -3(-3-1) - 1(-3-1) + 1(1-1) = 12 + 4 + 0 = 16\)</li>
+                <li>\(M_{14} = \begin{vmatrix} -3 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & -3 & 1 \end{vmatrix} = -3(1 - (-3)) - 1(1-1) + 1(-3-1) = -12 + 0 - 4 = -16\)</li>
+            </ul>
+            
+            <p>Substitusi nilai minor ke dalam persamaan utama:</p>
+            $$\text{det}(A) = 1(16) + 3(-16) + 1(16) - 1(-16)$$
+            $$\text{det}(A) = 16 - 48 + 16 + 16 = 0$$
+        </div>
+    </div>
 
-                  <div class="soal-title">Soal 3</div>
-                  <p>Diketahui persamaan matriks berikut:</p>
-                  <div class="matrix-display">
-                    $$\begin{pmatrix} 2 & 3 \\ 1 & 2 \end{pmatrix} X = \begin{pmatrix} 3 & 0 \\
+
+    <h2>B. Gunakan rumus matriks adjoin untuk menghitung invers dari matriks berikut</h2>
+    <div class="rumus-utama">
+        $$(\text{adj } A)_{ij} = (-1)^{i+j} M_{ji} \quad \text{dan} \quad A^{-1} = \frac{1}{\text{det}(A)} \text{adj } A$$
+    </div>
+
+    <div class="soal-box">
+        <span class="soal-title">Soal 4</span>
+        <p>Tentukan invers dari matriks berikut:</p>
+        $$A = \begin{pmatrix} -7 & -5 \\ 1 & 4 \end{pmatrix}$$
+        
+        <div class="penyelesaian">
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Berdasarkan hasil perhitungan pada Soal 1, diketahui \(\text{det}(A) = -23\).</p>
+            <p>Langkah berikutnya adalah menentukan matriks kofaktor \(C_{ij} = (-1)^{i+j} M_{ij}\):</p>
+            <ul class="langkah-list">
+                <li>\(C_{11} = (-1)^{1+1} \cdot 4 = 4\)</li>
+                <li>\(C_{12} = (-1)^{1+2} \cdot 1 = -1\)</li>
+                <li>\(C_{21} = (-1)^{2+1} \cdot (-5) = 5\)</li>
+                <li>\(C_{22} = (-1)^{2+2} \cdot (-7) = -7\)</li>
+            </ul>
+            
+            <p>Matriks Kofaktor \(C = \begin{pmatrix} 4 & -1 \\ 5 & -7 \end{pmatrix}\). Matriks Adjoin merupakan transpos dari matriks kofaktor (\(C^T\)):</p>
+            $$\text{adj } A = \begin{pmatrix} 4 & 5 \\ -1 & -7 \end{pmatrix}$$
+            
+            <p>Maka, invers matriks \(A\) adalah:</p>
+            $$A^{-1} = \frac{1}{-23} \begin{pmatrix} 4 & 5 \\ -1 & -7 \end{pmatrix} = \begin{pmatrix} -\frac{4}{23} & -\frac{5}{23} \\ \frac{1}{23} & \frac{7}{23} \end{pmatrix}$$
+        </div>
+    </div>
+
+    <div class="soal-box">
+        <span class="soal-title">Soal 5</span>
+        <p>Tentukan invers dari matriks berikut:</p>
+        $$A = \begin{pmatrix} 0 & 2 & -3 \\ 1 & -2 & -1 \\ 0 & 0 & 1 \end{pmatrix}$$
+        
+        <div class="penyelesaian">
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Berdasarkan hasil perhitungan pada Soal 2, diketahui \(\text{det}(A) = -2\).</p>
+            <p>Langkah berikutnya adalah menentukan seluruh elemen matriks kofaktor \(C_{ij}\):</p>
+            <ul class="langkah-list">
+                <li>\(C_{11} = +\begin{vmatrix} -2 & -1 \\ 0 & 1 \end{vmatrix} = -2 \quad | \quad C_{12} = -\begin{vmatrix} 1 & -1 \\ 0 & 1 \end{vmatrix} = -1 \quad | \quad C_{13} = +\begin{vmatrix} 1 & -2 \\ 0 & 0 \end{vmatrix} = 0\)</li>
+                <li>\(C_{21} = -\begin{vmatrix} 2 & -3 \\ 0 & 1 \end{vmatrix} = -2 \quad | \quad C_{22} = +\begin{vmatrix} 0 & -3 \\ 0 & 1 \end{vmatrix} = 0 \quad | \quad C_{23} = -\begin{vmatrix} 0 & 2 \\ 0 & 0 \end{vmatrix} = 0\)</li>
+                <li>\(C_{31} = +\begin{vmatrix} 2 & -3 \\ -2 & -1 \end{vmatrix} = -8 \quad | \quad C_{32} = -\begin{vmatrix} 0 & -3 \\ 1 & -1 \end{vmatrix} = -3 \quad | \quad C_{33} = +\begin{vmatrix} 0 & 2 \\ 1 & -2 \end{vmatrix} = -2\)</li>
+            </ul>
+            
+            <p>Matriks Kofaktor \(C = \begin{pmatrix} -2 & -1 & 0 \\ -2 & 0 & 0 \\ -8 & -3 & -2 \end{pmatrix}\). Matriks Adjoin (\(C^T\)):</p>
+            $$\text{adj } A = \begin{pmatrix} -2 & -2 & -8 \\ -1 & 0 & -3 \\ 0 & 0 & -2 \end{pmatrix}$$
+            
+            <p>Maka, invers matriks \(A\) adalah:</p>
+            $$A^{-1} = \frac{1}{-2} \begin{pmatrix} -2 & -2 & -8 \\ -1 & 0 & -3 \\ 0 & 0 & -2 \end{pmatrix} = \begin{pmatrix} 1 & 1 & 4 \\ \frac{1}{2} & 0 & \frac{3}{2} \\ 0 & 0 & 1 \end{pmatrix}$$
+        </div>
+    </div>
+
+    <div class="soal-box">
+        <span class="soal-title">Soal 6</span>
+        <p>Tentukan invers dari matriks berikut:</p>
+        $$A = \begin{pmatrix} 1 & -3 & 1 & 1 \\ -3 & 1 & 1 & 1 \\ 1 & 1 & -3 & 1 \\ 1 & 1 & 1 & -3 \end{pmatrix}$$
+        
+        <div class="penyelesaian">
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Berdasarkan hasil perhitungan pada Soal 3, diperoleh nilai determinan matriks tersebut adalah:</p>
+            $$\text{det}(A) = 0$$
+            <p>Sesuai dengan syarat eksistensi invers matriks, suatu matriks memiliki invers jika dan hanya jika nilai determinannya tidak sama dengan nol (\(\text{det}(A) \neq 0\)).</p>
+            
+            <div class="kesimpulan-box">
+                <strong>Kesimpulan:</strong> Karena \(\text{det}(A) = 0\), matriks \(A\) merupakan matriks singular sehingga <strong>tidak memiliki invers</strong> (operasi pembagian \(\frac{1}{0}\) pada rumus invers tidak terdefinisi).
+            </div>
+        </div>
+    </div>
+            
+          </div>
+          
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner container">
+              <div class="footer-item"><p class="component-author">By The Jupyter Book Community</p></div>
+              <div class="footer-item"><p class="copyright">© Copyright 2023.<br/></p></div>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+    <script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  </body>
+</html>
