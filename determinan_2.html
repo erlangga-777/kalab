@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Determinan(2) &#8212; Web Saya</title>
+    <title>Determinan(2) &#8212; My Sample Book</title>
   
     <script data-cfasync="false">
       document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
@@ -49,7 +49,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'formula_determinan';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Transformasi Linier Geometri" href="transformasi_linier_geometri.html" />
+    <link rel="next" title="Dekomposisi QR" href="dekomposisi_qr.html" />
     <link rel="prev" title="Determinan" href="determinan.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="docsearch:language" content="en"/>
@@ -110,8 +110,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="sistem_persamaan_linier.html">Sistem Persamaan Linier</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="aljabar_matrik.html">Aljabar Matrik</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="matrik_invers.html">Matrik (Invers)</a></li>
-                  <li class="toctree-l1"><a class="reference internal" href="evaluasi_invers_dan_determinan.html">Evaluasi Invers dan Determinan</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="determinan.html">Determinan</a></li>
+                  <li class="toctree-l1"><a class="reference internal" href="evaluasi_invers_dan_determinan.html">Evaluasi Invers dan Determinan</a></li>
                   <li class="toctree-l1 current active"><a class="current reference internal" href="#">Determinan(2)</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="dekomposisi_qr.html">Dekomposisi QR</a></li>
                   <li class="toctree-l1"><a class="reference internal" href="transformasi_linier_geometri.html">Transformasi Linier Geometri</a></li>
@@ -194,7 +194,7 @@
                   
                   <section id="ekspansi-kofaktor">
                     <h2>Ekspansi Kofaktor<a class="headerlink" href="#ekspansi-kofaktor" title="Link to this heading">#</a></h2>
-                    <p>Ekspansi kofaktor adalah salah satu cara untuk mencari determinan suatu matriks dengan cara membagi matriks tersebut menjadi matriks minor, yaitu menghilangkan suatu baris dan kolom matriks utama yang mengacu pada suatu elemen tertentu dalam matriks.</p>
+                    <p>Ekspansi kofaktor adalah salah satu cara untuk mencari determinan suatu matriks dengan cara membagi matriks tersebut menjadi matriks minor, yaitu menghilangkan suatu baris and kolom matriks utama yang mengacu pada suatu elemen tertentu dalam matriks.</p>
                   </section>
                   
                   <section id="penggunaan-ekspansi-kofaktor">
@@ -215,10 +215,10 @@
                     <p><span class="math notranslate nohighlight">\(\det(A_{41}) = ((-1) \cdot (-1)^{1+1} \cdot \det \begin{bmatrix} 2 &amp; -3 \\ 3 &amp; 1 \end{bmatrix}) + (0 \cdot (-1)^{1+2} \cdot \det \begin{bmatrix} 1 &amp; -3 \\ 0 &amp; 1 \end{bmatrix}) + (3 \cdot (-1)^{1+3} \cdot \det \begin{bmatrix} 1 &amp; 2 \\ 0 &amp; 3 \end{bmatrix}) = 16 \)</span></p>
                     
                     <p>Setelah menemukan determinan dari matriks minor diatas, selanjutnya adalah mencari kofaktornya</p>
-                    <p><span class="math notranslate nohighlight}\(C_{11} = (-1)^{1+1} \cdot \det(A_{11}) = 1 \cdot (-11) = -11 \)</span></p>
-                    <p><span class="math notranslate nohighlight}\(C_{21} = (-1)^{2+1} \cdot \det(A_{21}) = -1 \cdot (-15) = 15\)</span></p>
-                    <p><span class="math notranslate nohighlight}\(C_{31} = (-1)^{3+1} \cdot \det(A_{31}) = 1 \cdot (-10) = -10 \)</span></p>
-                    <p><span class="math notranslate nohighlight}\(C_{41} = (-1)^{4+1} \cdot \det(A_{41}) = -1 \cdot 16  = -16\)</span></p>
+                    <p><span class="math notranslate nohighlight">\(C_{11} = (-1)^{1+1} \cdot \det(A_{11}) = 1 \cdot (-11) = -11 \)</span></p>
+                    <p><span class="math notranslate nohighlight">\(C_{21} = (-1)^{2+1} \cdot \det(A_{21}) = -1 \cdot (-15) = 15\)</span></p>
+                    <p><span class="math notranslate nohighlight">\(C_{31} = (-1)^{3+1} \cdot \det(A_{31}) = 1 \cdot (-10) = -10 \)</span></p>
+                    <p><span class="math notranslate nohighlight">\(C_{41} = (-1)^{4+1} \cdot \det(A_{41}) = -1 \cdot 16  = -16\)</span></p>
                     
                     <p>Setelah ketemu kofaktor maka bisa dicari nilai dari determinan matriks <span class="math notranslate nohighlight">\(A\)</span></p>
                     <p><span class="math notranslate nohighlight">\(\det(A) = (a_{11} \cdot C_{11}) + (a_{21} \cdot C_{21}) + (a_{31} \cdot C_{31}) + (a_{41} \cdot C_{41})\\ = (2 \cdot (-11)) + (0 \cdot 15) + ((-1) \cdot (-10)) + (4 \cdot (-16)) = -76 \)</span></p>
